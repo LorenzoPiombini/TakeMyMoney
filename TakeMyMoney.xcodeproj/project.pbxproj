@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7448D9C22564B12B00948882 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9C12564B12B00948882 /* AppDelegate.swift */; };
+		7448D9C42564B12B00948882 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9C32564B12B00948882 /* SceneDelegate.swift */; };
+		7448D9C62564B12B00948882 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9C52564B12B00948882 /* ViewController.swift */; };
+		7448D9C92564B12B00948882 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7448D9C72564B12B00948882 /* Main.storyboard */; };
+		7448D9CC2564B12B00948882 /* TakeMyMoney.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9CA2564B12B00948882 /* TakeMyMoney.xcdatamodeld */; };
+		7448D9CE2564B12C00948882 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7448D9CD2564B12C00948882 /* Assets.xcassets */; };
+		7448D9D12564B12C00948882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7448D9CF2564B12C00948882 /* LaunchScreen.storyboard */; };
+		7448D9DC2564B12C00948882 /* TakeMyMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9DB2564B12C00948882 /* TakeMyMoneyTests.swift */; };
+		7448D9E72564B12C00948882 /* TakeMyMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7448D9D82564B12C00948882 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7448D9B62564B12B00948882 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7448D9BD2564B12B00948882;
+			remoteInfo = TakeMyMoney;
+		};
+		7448D9E32564B12C00948882 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7448D9B62564B12B00948882 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7448D9BD2564B12B00948882;
+			remoteInfo = TakeMyMoney;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7448D9BE2564B12B00948882 /* TakeMyMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeMyMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7448D9C12564B12B00948882 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7448D9C32564B12B00948882 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7448D9C52564B12B00948882 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7448D9C82564B12B00948882 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7448D9CB2564B12B00948882 /* TakeMyMoney.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TakeMyMoney.xcdatamodel; sourceTree = "<group>"; };
+		7448D9CD2564B12C00948882 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7448D9D02564B12C00948882 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7448D9D22564B12C00948882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7448D9D72564B12C00948882 /* TakeMyMoneyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeMyMoneyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7448D9DB2564B12C00948882 /* TakeMyMoneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMyMoneyTests.swift; sourceTree = "<group>"; };
+		7448D9DD2564B12C00948882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7448D9E22564B12C00948882 /* TakeMyMoneyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeMyMoneyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMyMoneyUITests.swift; sourceTree = "<group>"; };
+		7448D9E82564B12C00948882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7448D9BB2564B12B00948882 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9D42564B12C00948882 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9DF2564B12C00948882 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7448D9B52564B12B00948882 = {
+			isa = PBXGroup;
+			children = (
+				7448D9C02564B12B00948882 /* TakeMyMoney */,
+				7448D9DA2564B12C00948882 /* TakeMyMoneyTests */,
+				7448D9E52564B12C00948882 /* TakeMyMoneyUITests */,
+				7448D9BF2564B12B00948882 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7448D9BF2564B12B00948882 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7448D9BE2564B12B00948882 /* TakeMyMoney.app */,
+				7448D9D72564B12C00948882 /* TakeMyMoneyTests.xctest */,
+				7448D9E22564B12C00948882 /* TakeMyMoneyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7448D9C02564B12B00948882 /* TakeMyMoney */ = {
+			isa = PBXGroup;
+			children = (
+				7448D9C12564B12B00948882 /* AppDelegate.swift */,
+				7448D9C32564B12B00948882 /* SceneDelegate.swift */,
+				7448D9C52564B12B00948882 /* ViewController.swift */,
+				7448D9C72564B12B00948882 /* Main.storyboard */,
+				7448D9CD2564B12C00948882 /* Assets.xcassets */,
+				7448D9CF2564B12C00948882 /* LaunchScreen.storyboard */,
+				7448D9D22564B12C00948882 /* Info.plist */,
+				7448D9CA2564B12B00948882 /* TakeMyMoney.xcdatamodeld */,
+			);
+			path = TakeMyMoney;
+			sourceTree = "<group>";
+		};
+		7448D9DA2564B12C00948882 /* TakeMyMoneyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7448D9DB2564B12C00948882 /* TakeMyMoneyTests.swift */,
+				7448D9DD2564B12C00948882 /* Info.plist */,
+			);
+			path = TakeMyMoneyTests;
+			sourceTree = "<group>";
+		};
+		7448D9E52564B12C00948882 /* TakeMyMoneyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */,
+				7448D9E82564B12C00948882 /* Info.plist */,
+			);
+			path = TakeMyMoneyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7448D9BD2564B12B00948882 /* TakeMyMoney */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7448D9EB2564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoney" */;
+			buildPhases = (
+				7448D9BA2564B12B00948882 /* Sources */,
+				7448D9BB2564B12B00948882 /* Frameworks */,
+				7448D9BC2564B12B00948882 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TakeMyMoney;
+			productName = TakeMyMoney;
+			productReference = 7448D9BE2564B12B00948882 /* TakeMyMoney.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7448D9D62564B12C00948882 /* TakeMyMoneyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7448D9EE2564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoneyTests" */;
+			buildPhases = (
+				7448D9D32564B12C00948882 /* Sources */,
+				7448D9D42564B12C00948882 /* Frameworks */,
+				7448D9D52564B12C00948882 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7448D9D92564B12C00948882 /* PBXTargetDependency */,
+			);
+			name = TakeMyMoneyTests;
+			productName = TakeMyMoneyTests;
+			productReference = 7448D9D72564B12C00948882 /* TakeMyMoneyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7448D9E12564B12C00948882 /* TakeMyMoneyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7448D9F12564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoneyUITests" */;
+			buildPhases = (
+				7448D9DE2564B12C00948882 /* Sources */,
+				7448D9DF2564B12C00948882 /* Frameworks */,
+				7448D9E02564B12C00948882 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7448D9E42564B12C00948882 /* PBXTargetDependency */,
+			);
+			name = TakeMyMoneyUITests;
+			productName = TakeMyMoneyUITests;
+			productReference = 7448D9E22564B12C00948882 /* TakeMyMoneyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7448D9B62564B12B00948882 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					7448D9BD2564B12B00948882 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					7448D9D62564B12C00948882 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 7448D9BD2564B12B00948882;
+					};
+					7448D9E12564B12C00948882 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 7448D9BD2564B12B00948882;
+					};
+				};
+			};
+			buildConfigurationList = 7448D9B92564B12B00948882 /* Build configuration list for PBXProject "TakeMyMoney" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7448D9B52564B12B00948882;
+			productRefGroup = 7448D9BF2564B12B00948882 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7448D9BD2564B12B00948882 /* TakeMyMoney */,
+				7448D9D62564B12C00948882 /* TakeMyMoneyTests */,
+				7448D9E12564B12C00948882 /* TakeMyMoneyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7448D9BC2564B12B00948882 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7448D9D12564B12C00948882 /* LaunchScreen.storyboard in Resources */,
+				7448D9CE2564B12C00948882 /* Assets.xcassets in Resources */,
+				7448D9C92564B12B00948882 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9D52564B12C00948882 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9E02564B12C00948882 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7448D9BA2564B12B00948882 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7448D9C62564B12B00948882 /* ViewController.swift in Sources */,
+				7448D9C22564B12B00948882 /* AppDelegate.swift in Sources */,
+				7448D9C42564B12B00948882 /* SceneDelegate.swift in Sources */,
+				7448D9CC2564B12B00948882 /* TakeMyMoney.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9D32564B12C00948882 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7448D9DC2564B12C00948882 /* TakeMyMoneyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7448D9DE2564B12C00948882 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7448D9E72564B12C00948882 /* TakeMyMoneyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7448D9D92564B12C00948882 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7448D9BD2564B12B00948882 /* TakeMyMoney */;
+			targetProxy = 7448D9D82564B12C00948882 /* PBXContainerItemProxy */;
+		};
+		7448D9E42564B12C00948882 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7448D9BD2564B12B00948882 /* TakeMyMoney */;
+			targetProxy = 7448D9E32564B12C00948882 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7448D9C72564B12B00948882 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7448D9C82564B12B00948882 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7448D9CF2564B12C00948882 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7448D9D02564B12C00948882 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7448D9E92564B12C00948882 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7448D9EA2564B12C00948882 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7448D9EC2564B12C00948882 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoney/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoney";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7448D9ED2564B12C00948882 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoney/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoney";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7448D9EF2564B12C00948882 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoneyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoneyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeMyMoney.app/TakeMyMoney";
+			};
+			name = Debug;
+		};
+		7448D9F02564B12C00948882 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoneyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoneyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TakeMyMoney.app/TakeMyMoney";
+			};
+			name = Release;
+		};
+		7448D9F22564B12C00948882 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoneyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoneyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TakeMyMoney;
+			};
+			name = Debug;
+		};
+		7448D9F32564B12C00948882 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9AUJ4PT8G;
+				INFOPLIST_FILE = TakeMyMoneyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Plan-B-Softwarehouse.TakeMyMoneyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TakeMyMoney;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7448D9B92564B12B00948882 /* Build configuration list for PBXProject "TakeMyMoney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7448D9E92564B12C00948882 /* Debug */,
+				7448D9EA2564B12C00948882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7448D9EB2564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoney" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7448D9EC2564B12C00948882 /* Debug */,
+				7448D9ED2564B12C00948882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7448D9EE2564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoneyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7448D9EF2564B12C00948882 /* Debug */,
+				7448D9F02564B12C00948882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7448D9F12564B12C00948882 /* Build configuration list for PBXNativeTarget "TakeMyMoneyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7448D9F22564B12C00948882 /* Debug */,
+				7448D9F32564B12C00948882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7448D9CA2564B12B00948882 /* TakeMyMoney.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7448D9CB2564B12B00948882 /* TakeMyMoney.xcdatamodel */,
+			);
+			currentVersion = 7448D9CB2564B12B00948882 /* TakeMyMoney.xcdatamodel */;
+			path = TakeMyMoney.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7448D9B62564B12B00948882 /* Project object */;
+}
