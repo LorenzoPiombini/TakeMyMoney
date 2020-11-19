@@ -16,6 +16,8 @@
 		7448D9D12564B12C00948882 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7448D9CF2564B12C00948882 /* LaunchScreen.storyboard */; };
 		7448D9DC2564B12C00948882 /* TakeMyMoneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9DB2564B12C00948882 /* TakeMyMoneyTests.swift */; };
 		7448D9E72564B12C00948882 /* TakeMyMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */; };
+		7465E03E25661706009B80A9 /* labelTextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7465E03D25661706009B80A9 /* labelTextColor.swift */; };
+		7465E046256618C9009B80A9 /* textFieldformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7465E045256618C9009B80A9 /* textFieldformatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		7448D9E22564B12C00948882 /* TakeMyMoneyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TakeMyMoneyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeMyMoneyUITests.swift; sourceTree = "<group>"; };
 		7448D9E82564B12C00948882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7465E03D25661706009B80A9 /* labelTextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = labelTextColor.swift; sourceTree = "<group>"; };
+		7465E045256618C9009B80A9 /* textFieldformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldformatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		7448D9C02564B12B00948882 /* TakeMyMoney */ = {
 			isa = PBXGroup;
 			children = (
+				7465E03C256616DF009B80A9 /* Views */,
 				7448D9C12564B12B00948882 /* AppDelegate.swift */,
 				7448D9C32564B12B00948882 /* SceneDelegate.swift */,
 				7448D9C52564B12B00948882 /* ViewController.swift */,
@@ -129,6 +134,15 @@
 				7448D9E82564B12C00948882 /* Info.plist */,
 			);
 			path = TakeMyMoneyUITests;
+			sourceTree = "<group>";
+		};
+		7465E03C256616DF009B80A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7465E03D25661706009B80A9 /* labelTextColor.swift */,
+				7465E045256618C9009B80A9 /* textFieldformatter.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7465E03E25661706009B80A9 /* labelTextColor.swift in Sources */,
 				7448D9C62564B12B00948882 /* ViewController.swift in Sources */,
 				7448D9C22564B12B00948882 /* AppDelegate.swift in Sources */,
 				7448D9C42564B12B00948882 /* SceneDelegate.swift in Sources */,
+				7465E046256618C9009B80A9 /* textFieldformatter.swift in Sources */,
 				7448D9CC2564B12B00948882 /* TakeMyMoney.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

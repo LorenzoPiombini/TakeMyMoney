@@ -21,6 +21,8 @@ class ViewController: UIViewController {
         //to hide the scrollview :
         scrollViewtohide.alpha = 0
         // Do any additional setup after loading the view.
+        
+        
     }
 
     @IBAction func showingPayPal(_ sender: UIButton){
