@@ -104,11 +104,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Khx-Zn-6Cy" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Khx-Zn-6Cy" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="8" y="39" width="346" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="cc-number"/>
+                                        <connections>
+                                            <action selector="findingTheCreditCardBrend:" destination="BYZ-38-t0r" eventType="editingChanged" id="tgi-Da-NQJ"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lIR-En-LpA" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="17" y="133" width="97" height="34"/>
@@ -120,7 +123,10 @@
                                         <rect key="frame" x="219" y="133" width="97" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="checkingRightValues:" destination="BYZ-38-t0r" eventType="editingChanged" id="YzN-dn-dOy"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valid until" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-GR-miI" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="8" y="94" width="82" height="21"/>
@@ -186,6 +192,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="creditCardCVV" destination="Me9-tn-dkT" id="WVu-Cj-PGs"/>
+                        <outlet property="creditCardTextField" destination="Khx-Zn-6Cy" id="tMb-eG-7eU"/>
+                        <outlet property="passwordInputTextFieldPayPal" destination="QVh-ZZ-Em3" id="3h8-qA-bpm"/>
                         <outlet property="scrollViewtohide" destination="V1K-iS-k2z" id="Uge-6e-Nui"/>
                         <outlet property="textFieldWithInTheScrollView" destination="Khx-Zn-6Cy" id="DNo-US-Rh6"/>
                     </connections>
@@ -221,16 +230,16 @@
             <size key="intrinsicContentSize" width="79.5" height="20.5"/>
         </designable>
         <designable name="Khx-Zn-6Cy">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="Me9-tn-dkT">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="QVh-ZZ-Em3">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="TEX-Uo-NFV">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="Uph-Ez-bEK">
             <size key="intrinsicContentSize" width="267.5" height="20.5"/>
@@ -248,13 +257,13 @@
             <size key="intrinsicContentSize" width="73.5" height="20.5"/>
         </designable>
         <designable name="lIR-En-LpA">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="lIy-ep-LgY">
             <size key="intrinsicContentSize" width="34" height="20.5"/>
         </designable>
         <designable name="lSa-Yh-aCj">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="ne5-oW-okU">
             <size key="intrinsicContentSize" width="129.5" height="20.5"/>
