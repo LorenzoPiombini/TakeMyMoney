@@ -23,8 +23,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var userCreditCardInput:String = ""
     var storingValues = ""
-    
-   
+    var countingToAllowDeleteaction = 0
+    var valueToHandleTheInput = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,13 +137,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
         
        var newValue = ""
-        if creditCardTextField.text == "" {
+        if creditCardTextField.text == "" && storingValues.count == 1 {
             creditCardTextField.leftViewMode = .never
+            newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
+                    whichcreditcard(forUserInput: newValue)
         } else {
             newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
                     whichcreditcard(forUserInput: newValue)
            
                         }
+       
                     }
         
                 
@@ -151,23 +154,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func secureInputwithAnotherChar(TextField: UITextField)-> String{
         
-        if TextField.text == "" {
-            TextField.text = "*"
-        }else {
+        if  TextField.text!.count > countingToAllowDeleteaction{
             storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
             storingValues.remove(at: index)
             }
-               
             }
+            TextField.text = String(repeating: "*", count: storingValues.count)
+            countingToAllowDeleteaction = TextField.text!.count
+        } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count > 1{
+            storingValues.removeLast()
+            storingValues = TextField.text!
+            for _ in storingValues {
+                if let index = storingValues.firstIndex(of: "*") {
+            storingValues.remove(at: index)
+            }
+            }
+            TextField.text = String(repeating: "*", count: storingValues.count)
+            countingToAllowDeleteaction = TextField.text!.count
+        } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count == 1 {
+            storingValues.removeLast()
+            storingValues += TextField.text!
+            for _ in storingValues {
+                if let index = storingValues.firstIndex(of: "*") {
+            storingValues.remove(at: index)
+            }
+            }
+            TextField.text = String(repeating: "*", count: storingValues.count)
+            countingToAllowDeleteaction = TextField.text!.count
+        } else if TextField.text!.count == 0  {
+            storingValues.removeAll()
+            countingToAllowDeleteaction = 0
         }
-        TextField.text = ""
-        for _ in storingValues{
-            TextField.text?.append("*")
-        }
-        
+        print(storingValues)
         return storingValues
+        
     }
     
     
@@ -210,7 +232,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else if textField.text!.count > 0{
             return true
         }
-    return true
+    return false
      
 }
 
