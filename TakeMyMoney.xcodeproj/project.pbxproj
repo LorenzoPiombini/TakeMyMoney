@@ -18,6 +18,7 @@
 		7448D9E72564B12C00948882 /* TakeMyMoneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D9E62564B12C00948882 /* TakeMyMoneyUITests.swift */; };
 		7465E03E25661706009B80A9 /* labelTextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7465E03D25661706009B80A9 /* labelTextColor.swift */; };
 		7465E046256618C9009B80A9 /* textFieldformatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7465E045256618C9009B80A9 /* textFieldformatter.swift */; };
+		74A9918E25677DC600394681 /* drawingCreditCArdLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A9918D25677DC600394681 /* drawingCreditCArdLogo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		7448D9E82564B12C00948882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7465E03D25661706009B80A9 /* labelTextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = labelTextColor.swift; sourceTree = "<group>"; };
 		7465E045256618C9009B80A9 /* textFieldformatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldformatter.swift; sourceTree = "<group>"; };
+		74A9918D25677DC600394681 /* drawingCreditCArdLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = drawingCreditCArdLogo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				7465E03D25661706009B80A9 /* labelTextColor.swift */,
 				7465E045256618C9009B80A9 /* textFieldformatter.swift */,
+				74A9918D25677DC600394681 /* drawingCreditCArdLogo.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				7465E03E25661706009B80A9 /* labelTextColor.swift in Sources */,
 				7448D9C62564B12B00948882 /* ViewController.swift in Sources */,
+				74A9918E25677DC600394681 /* drawingCreditCArdLogo.swift in Sources */,
 				7448D9C22564B12B00948882 /* AppDelegate.swift in Sources */,
 				7448D9C42564B12B00948882 /* SceneDelegate.swift in Sources */,
 				7465E046256618C9009B80A9 /* textFieldformatter.swift in Sources */,

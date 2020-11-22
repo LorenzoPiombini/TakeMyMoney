@@ -18,12 +18,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textFieldWithInTheScrollView: UITextField!
     @IBOutlet weak var passwordInputTextFieldPayPal: UITextField!
     @IBOutlet weak var creditCardCVV: UITextField!
-    @IBOutlet weak var creditCardTextField: UITextField!
+    @IBOutlet weak var creditCardTextField:UITextField!
+    @IBOutlet weak var validUntilTextField: UITextField!
+    
+    var userCreditCardInput:String = ""
+    var storingValues = ""
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordInputTextFieldPayPal.isSecureTextEntry = true
-        //to hide the scrollview :
+        creditCardCVV.isSecureTextEntry = true
+        
+        //to hide the scrollviews with the credit CardData :
         scrollViewtohide.alpha = 0
+        
+        
+        
+        
+    
         // Do any additional setup after loading the view.
         
         
@@ -43,10 +57,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     
+
+    
+    
+   // Checking the values for CVV fields
+    
     @IBAction func checkingRightValues(_ sender: Any) {
         checkingCVVforNumbers()
     }
     
+    // function to be called in the checkingRightValues IBAction
     func checkIfThereIsalredyInputsInCVV()-> Bool{
         if creditCardCVV.text!.count >= 2 {
             return true
@@ -56,8 +76,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkingCVVforNumbers(){
-        //this is too handle inputs when you are using the simulator cause you can use tha actual
-        //keyboard
+        
+        /* this handles inputs when you are using the simulator cause you can use tha actual
+        keyboard,  */
+        
         if creditCardCVV.text != "" {
         if Int(creditCardCVV.text!) == nil {
             let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
@@ -73,15 +95,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        creditCardCVV.resignFirstResponder()
-        return true
+    
+    
+    // group of functions checking the creditCard brend
+    
+    func amex(UserInput: String) -> Bool {
+        if UserInput.hasPrefix("34") || UserInput.hasPrefix("37"){
+            return true
+        } else {
+            return false
+        }
+    }
+    func discover (UserInput: String) -> Bool {
+        if UserInput.hasPrefix("6011") || UserInput.hasPrefix("68"){
+            return true
+        } else
+        {
+            return false
+        }
+        
+    }
+    func visa(UserInput: String) -> Bool {
+        if UserInput.hasPrefix("4") {
+            return true
+        } else {
+            return false
+        }
     }
     
-    
-    func masterCard()->Bool {
-        if creditCardTextField.text!.hasPrefix("51") || creditCardTextField.text!.hasPrefix("52") || creditCardTextField.text!.hasPrefix("53") || creditCardTextField.text!.hasPrefix("54") ||
-            creditCardTextField.text!.hasPrefix("55") {
+    func masterCard(UserInput: String)->Bool {
+        if UserInput.hasPrefix("51") || UserInput.hasPrefix("52") || UserInput.hasPrefix("53") || UserInput.hasPrefix("54") ||
+            UserInput.hasPrefix("55") {
             return true
                    
         } else {
@@ -91,21 +135,83 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
-       whichcreditcard()
+        
+       var newValue = ""
+        if creditCardTextField.text == "" {
+            creditCardTextField.leftViewMode = .never
+        } else {
+            newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
+                    whichcreditcard(forUserInput: newValue)
+           
+                        }
+                    }
+        
+                
+        
+    
+    func secureInputwithAnotherChar(TextField: UITextField)-> String{
+        
+        if TextField.text == "" {
+            TextField.text = "*"
+        }else {
+            storingValues += TextField.text!
+            for _ in storingValues {
+                if let index = storingValues.firstIndex(of: "*") {
+            storingValues.remove(at: index)
+            }
+               
+            }
+        }
+        TextField.text = ""
+        for _ in storingValues{
+            TextField.text?.append("*")
+        }
+        
+        return storingValues
     }
     
-    func whichcreditcard() {
-        // you have to resize better the image 
-        if masterCard() {
+    
+
+    //putting the Credit Card brand image in place
+    func whichcreditcard(forUserInput:String) {
+        if masterCard(UserInput: forUserInput) {
             creditCardTextField.leftViewMode = .always
             let imageView = UIImageView()
             let Image = UIImage(named: "mc_symbol_opt_45_3x.png")
             imageView.image = Image
-            let height = creditCardTextField.frame.size.height
             creditCardTextField.leftView = imageView
-            creditCardTextField.leftView?.frame = CGRect(x: 0, y: 0, width: creditCardTextField.frame.size.width / 4, height: height)
+            
+        }else if visa(UserInput: forUserInput){
+            creditCardTextField.leftViewMode = .always
+            let imageView = UIImageView()
+            let image = UIImage(named: "visa.png")
+            imageView.image = image
+            creditCardTextField.leftView = imageView
+        }else if discover(UserInput: forUserInput){
+            creditCardTextField.leftViewMode = .always
+            let imageView = UIImageView()
+            let image = UIImage(named: "discover.png")
+            imageView.image = image
+            creditCardTextField.leftView = imageView
+        }else if amex(UserInput: forUserInput) {
+            creditCardTextField.leftViewMode = .always
+            let imageView = UIImageView()
+            let image = UIImage(named: "amex.png")
+            imageView.image = image
+            creditCardTextField.leftView = imageView
         }
         
     }
+    
+    // handle the credit card textField
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.text?.count == 0{
+            return true
+        }else if textField.text!.count > 0{
+            return true
+        }
+    return true
+     
 }
 
+}
