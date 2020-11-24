@@ -144,11 +144,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
             newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
                     whichcreditcard(forUserInput: newValue)
-                    
+            
                         }
         if !didBackSpaceSelect {
             formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: creditCardTextField)
+            didBackSpaceSelect = false
+        }else {
+            didBackSpaceSelect = false
         }
+        
         }
      
                     
@@ -188,23 +192,45 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
   
+    func DidDeleteChars(inThisTxtField: UITextField) -> Bool {
+        if countingToAllowDeleteaction > inThisTxtField.text!.count {
+            return true
+        }else {
+            return false
+        }
+    }
+    
     
     func secureInputwithAnotherChar(TextField: UITextField)-> String{
-    if storingValues.count >= 12 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
+    
+        
+        if DidDeleteChars(inThisTxtField: creditCardTextField) {
+            if storingValues.count > 1 {
+            storingValues.removeLast()
+                countingToAllowDeleteaction = TextField.text!.count
+                didBackSpaceSelect = true
+                switch TextField.text!.count {
+                case 14:
+                    TextField.text?.removeLast()
+                    countingToAllowDeleteaction = TextField.text!.count
+                case 9:
+                    TextField.text?.removeLast()
+                    countingToAllowDeleteaction = TextField.text!.count
+                case 4:
+                    TextField.text?.removeLast()
+                    countingToAllowDeleteaction = TextField.text!.count
+                default:
+                    break
+                }
+            }else {
+                storingValues = ""
+                countingToAllowDeleteaction = 0
+            }
+    }else if storingValues.count >= 12 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
          let lastInput = TextField.text!.removeLast()
-        switch lastInput {
-        case "*":
-            storingValues.removeLast()
-            didBackSpaceSelect = true
-        case " ":
-            storingValues.removeLast()
-            didBackSpaceSelect = true
-        default:
             storingValues += "\(lastInput)"
             TextField.text!.append(lastInput)
-        }
-           
-            
+        countingToAllowDeleteaction = TextField.text!.count
         } else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count < 5 {
             storingValues += TextField.text!
             for _ in storingValues {
@@ -215,7 +241,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             TextField.text = String(repeating: "*", count: storingValues.count)
-            
             countingToAllowDeleteaction = TextField.text!.count
           
         }else if  TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count >= 5 && storingValues.count < 9 {
@@ -228,7 +253,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             TextField.text = "**** " + String(repeating: "*", count: storingValues.count - 4)
-            countingToAllowDeleteaction = storingValues.count
+            countingToAllowDeleteaction = TextField.text!.count
     }else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count >= 9 {
         storingValues += TextField.text!
         for _ in storingValues {
@@ -239,7 +264,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
         }
         TextField.text = "**** **** " + String(repeating: "*", count: storingValues.count - 8)
-        countingToAllowDeleteaction = storingValues.count
+        countingToAllowDeleteaction = TextField.text!.count
     }else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count > 1{
             storingValues.removeLast()
 //            for _ in storingValues {
@@ -247,7 +272,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //            storingValues.remove(at: index)
 //            }
 //            }
-            TextField.text = String(repeating: "*", count: storingValues.count)
+            
             countingToAllowDeleteaction = TextField.text!.count
         } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count == 1 {
             storingValues.removeLast()
@@ -256,7 +281,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             storingValues.remove(at: index)
             }
             }
-            TextField.text = String(repeating: "*", count: storingValues.count)
+            
             countingToAllowDeleteaction = TextField.text!.count
         } else if TextField.text!.count == 0  {
             storingValues = ""
