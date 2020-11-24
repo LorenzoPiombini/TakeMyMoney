@@ -200,6 +200,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // secureInputwithAnotherChar V 1.0 11/24/20 it works with Mastercard Discover and Visa, Amex format has not been implemented yet
+    /**
+     The secureInputwithAnotherChar is the core function to secure the input besides
+     the last four digits of the credit card. it works with other functions in orther to secure and guarnted the outcome
+     
+      - parameter TextField: is the place where the input takes place. The user will put the credit Card number in, and the latter will be secured with "*" apart from the last four digits.
+       
+      - returns  : a String variable storing the Credit Card Number from the user, this variable will be use in onther functions like whichcreditcard to obtain the credit Card brend.
+     
+       this method works with DidDeleteChars, creditCardTypeWith16numbers:
+       DidDeleteChars(inThisTxtField: UITextField) - > Bool {}, will return true when backSpace on the nkeyboard has been tapped and false when it wil not be the case. creditCardTypeWith16numbers -> Bool will return true when the credit card bred is one between MasterCard, Visa, or Discover
+                                            
+                               
+     */
     
     func secureInputwithAnotherChar(TextField: UITextField)-> String{
     
