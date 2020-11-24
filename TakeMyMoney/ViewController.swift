@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 class ViewController: UIViewController, UITextFieldDelegate {
 
-    override class func prepareForInterfaceBuilder() {
+    override  func prepareForInterfaceBuilder() {
         self
     }
     
@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var userCreditCardInput:String = ""
     var storingValues = ""
     var countingToAllowDeleteaction = 0
-    var valueToHandleTheInput = ""
+    var didBackSpaceSelect = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,45 +137,120 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
         
        var newValue = ""
-        if creditCardTextField.text == "" && storingValues.count == 1 {
+        if creditCardTextField.text == "" {
             creditCardTextField.leftViewMode = .never
             newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
                     whichcreditcard(forUserInput: newValue)
         } else {
             newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
                     whichcreditcard(forUserInput: newValue)
-           
+                    
                         }
-       
-                    }
+        if !didBackSpaceSelect {
+            formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: creditCardTextField)
+        }
+        }
+     
+                    
         
-                
+              
+    func formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: UITextField){
+        if creditCardTypeWith16numbers(forThisIDNumber: storingValues){
+            switch storingValues.count {
+            case 5:
+                let index = CreditCardTextField.text!.lastIndex(of: "*")
+                CreditCardTextField.text!.insert(" ", at: index!)
+            case 9:
+                let index = CreditCardTextField.text!.lastIndex(of: "*")
+                CreditCardTextField.text!.insert(" ", at: index!)
+            case 13:
+                let lastInput = CreditCardTextField.text!.removeLast()
+                CreditCardTextField.text!.append(lastInput)
+                let index = CreditCardTextField.text!.lastIndex(of: lastInput)
+                CreditCardTextField.text!.insert(" ", at: index!)
+            default:
+                break
+            }
+        } else {
+            switch storingValues.count {
+            case 5:
+                let index = CreditCardTextField.text!.lastIndex(of: "*")
+                CreditCardTextField.text!.insert(" ", at: index!)
+            case 11:
+                let index = CreditCardTextField.text!.lastIndex(of: "*")
+                CreditCardTextField.text!.insert(" ", at: index!)
+            
+            default:
+                break
+            }
+        }
         
+        
+    }
+  
     
     func secureInputwithAnotherChar(TextField: UITextField)-> String{
-        
-        if  TextField.text!.count > countingToAllowDeleteaction{
+    if storingValues.count >= 12 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
+         let lastInput = TextField.text!.removeLast()
+        switch lastInput {
+        case "*":
+            storingValues.removeLast()
+            didBackSpaceSelect = true
+        case " ":
+            storingValues.removeLast()
+            didBackSpaceSelect = true
+        default:
+            storingValues += "\(lastInput)"
+            TextField.text!.append(lastInput)
+        }
+           
+            
+        } else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count < 5 {
             storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
             storingValues.remove(at: index)
-            }
+                } else if let index2 = storingValues.firstIndex(of: " "){
+                    storingValues.remove(at: index2)
+                }
             }
             TextField.text = String(repeating: "*", count: storingValues.count)
+            
             countingToAllowDeleteaction = TextField.text!.count
-        } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count > 1{
-            storingValues.removeLast()
-            storingValues = TextField.text!
+          
+        }else if  TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count >= 5 && storingValues.count < 9 {
+            storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
             storingValues.remove(at: index)
+                } else if let index2 = storingValues.firstIndex(of: " "){
+                    storingValues.remove(at: index2)
+                }
             }
+            TextField.text = "**** " + String(repeating: "*", count: storingValues.count - 4)
+            countingToAllowDeleteaction = storingValues.count
+    }else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count >= 9 {
+        storingValues += TextField.text!
+        for _ in storingValues {
+            if let index = storingValues.firstIndex(of: "*") {
+        storingValues.remove(at: index)
+            } else if let index2 = storingValues.firstIndex(of: " "){
+                storingValues.remove(at: index2)
             }
+        }
+        TextField.text = "**** **** " + String(repeating: "*", count: storingValues.count - 8)
+        countingToAllowDeleteaction = storingValues.count
+    }else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count > 1{
+            storingValues.removeLast()
+//            for _ in storingValues {
+//                if let index = storingValues.firstIndex(of: "*") {
+//            storingValues.remove(at: index)
+//            }
+//            }
             TextField.text = String(repeating: "*", count: storingValues.count)
             countingToAllowDeleteaction = TextField.text!.count
         } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count == 1 {
             storingValues.removeLast()
-            storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
             storingValues.remove(at: index)
@@ -184,16 +259,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
             TextField.text = String(repeating: "*", count: storingValues.count)
             countingToAllowDeleteaction = TextField.text!.count
         } else if TextField.text!.count == 0  {
-            storingValues.removeAll()
+            storingValues = ""
             countingToAllowDeleteaction = 0
         }
-        print(storingValues)
+        
+        
+        
+        
         return storingValues
         
     }
     
     
-
+    func creditCardTypeWith16numbers(forThisIDNumber: String)->Bool {
+        if masterCard(UserInput: forThisIDNumber ) || visa(UserInput: forThisIDNumber) || discover(UserInput: forThisIDNumber){
+            return true
+        }else {
+            return false
+        }
+    }
     //putting the Credit Card brand image in place
     func whichcreditcard(forUserInput:String) {
         if masterCard(UserInput: forUserInput) {
