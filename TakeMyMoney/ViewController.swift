@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol userInteraction {
+   func didUsereSelectTheTextField(textField: UITextField)
+}
+
 @IBDesignable
 class ViewController: UIViewController, UITextFieldDelegate {
+    
+    
 
     override  func prepareForInterfaceBuilder() {
         self
@@ -21,20 +27,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var creditCardTextField:UITextField!
     @IBOutlet weak var validUntilTextField: UITextField!
     
+    
     var userCreditCardInput:String = ""
     var storingValues = ""
     var countingToAllowDeleteaction = 0
     var didBackSpaceSelect = false
+    
+    var datePicker = UIDatePicker()
+    let toolBar = UIToolbar()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordInputTextFieldPayPal.isSecureTextEntry = true
         creditCardCVV.isSecureTextEntry = true
         
-        //to hide the scrollviews with the credit CardData :
+        //to hide the scrollviews with the credit Card fields :
         scrollViewtohide.alpha = 0
         
-        
+        validUntilTextField.delegate = self
+        makingDatePicker()
         
         
     
@@ -95,8 +108,83 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     }
     
+   
     
     
+  
+    @IBAction func changingvalue(_ sender: UITextField) {
+        sender.becomeFirstResponder()
+        print("yes")
+    }
+    
+    
+    @IBAction func showingDatePicker(_ sender: Any) {
+        
+        
+     
+//
+//        let alertDate = UIAlertController (title: "Credit Card Valid Until", message: "pick the date on your card", preferredStyle: .alert)
+//
+//        alertDate.addTextField(configurationHandler: {(textField) in
+//            self.makingDatePicker()
+//            textField.inputView = self.datePicker
+//
+//        })
+//        let toolBar = UIToolbar()
+//        toolBar.barStyle = .default
+//            toolBar.isTranslucent = true
+//            toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+//            toolBar.sizeToFit()
+//        self.present(alertDate, animated: true, completion: nil)
+//        alertDate
+    }
+    
+    func makingDatePicker() {
+         let formatter = DateFormatter()
+        self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: self.view.frame.size.height - 220, width: self.view.frame.size.width, height: 216))
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        formatter.dateFormat = "MM-yyyy"
+        validUntilTextField.inputView = self.datePicker
+        validUntilTextField.inputAccessoryView = self.toolBar
+        toolBar.barStyle = .default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+            toolBar.sizeToFit()
+        
+        let Done = UIBarButtonItem(title: "Done", style: .plain, target: self, action:#selector(self.doneHasBeenTapped))
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action:#selector(self.cancelHasBeenTapped))
+        let delete = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deletingTheDate))
+        toolBar.setItems([Done, cancel, delete], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        self.toolBar.isHidden = false
+        
+        
+        
+    
+        
+    }
+    
+     @objc func doneHasBeenTapped(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/yyyy"
+        
+        datePicker.isHidden = true
+        self.toolBar.isHidden = true
+        validUntilTextField.text = formatter.string(from: datePicker.date)
+        validUntilTextField.resignFirstResponder()
+        self.makingDatePicker() // called again to allow the User to change the date
+    }
+   @objc func cancelHasBeenTapped (){
+        datePicker.isHidden = true
+        self.toolBar.isHidden = true
+    validUntilTextField.resignFirstResponder()
+    self.makingDatePicker()
+    }
+    
+    @objc func deletingTheDate(){
+        validUntilTextField.text?.removeAll()
+    }
     // group of functions checking the creditCard brend
     
     func amex(UserInput: String) -> Bool {
@@ -135,26 +223,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
-        
-       var newValue = ""
-        if creditCardTextField.text == "" {
-            creditCardTextField.leftViewMode = .never
-            newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
-                    whichcreditcard(forUserInput: newValue)
-        } else {
-            newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
-                    whichcreditcard(forUserInput: newValue)
-            
-                        }
-        if !didBackSpaceSelect {
-            formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: creditCardTextField)
-            didBackSpaceSelect = false
-        }else {
-            didBackSpaceSelect = false
+       
+            var newValue = ""
+             if creditCardTextField.text == "" {
+                 creditCardTextField.leftViewMode = .never
+                 newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
+                         whichcreditcard(forUserInput: newValue)
+             } else {
+                 newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
+                         whichcreditcard(forUserInput: newValue)
+
+                             }
+             if !didBackSpaceSelect {
+                 formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: creditCardTextField)
+                 didBackSpaceSelect = false
+             }else {
+                 didBackSpaceSelect = false
+             }
+       
+
         }
-        
-        }
-     
+
+
+
+
+    
+
                     
         
               
@@ -180,10 +274,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             case 5:
                 let index = CreditCardTextField.text!.lastIndex(of: "*")
                 CreditCardTextField.text!.insert(" ", at: index!)
-            case 11:
-                let index = CreditCardTextField.text!.lastIndex(of: "*")
-                CreditCardTextField.text!.insert(" ", at: index!)
-            
+//            case 10:
+//
+//                CreditCardTextField.text!.append(" ")
+//
             default:
                 break
             }
@@ -218,7 +312,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func secureInputwithAnotherChar(TextField: UITextField)-> String{
     
         
-        if DidDeleteChars(inThisTxtField: creditCardTextField) {
+        if DidDeleteChars(inThisTxtField: creditCardTextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
             if storingValues.count > 1 {
             storingValues.removeLast()
                 countingToAllowDeleteaction = TextField.text!.count
@@ -240,12 +334,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 storingValues = ""
                 countingToAllowDeleteaction = 0
             }
+        } else if DidDeleteChars(inThisTxtField: creditCardTextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false{
+            if storingValues.count > 1 {
+                
+            storingValues.removeLast()
+                countingToAllowDeleteaction = TextField.text!.count
+                didBackSpaceSelect = true
+                switch TextField.text!.count {
+                case 11:
+                    TextField.text?.removeLast()
+                    countingToAllowDeleteaction = TextField.text!.count
+                case 4:
+                    TextField.text?.removeLast()
+                    countingToAllowDeleteaction = TextField.text!.count
+                default:
+                    break
+                    
+                }
+            } else {
+                storingValues = ""
+                countingToAllowDeleteaction = 0
+                
+            }
     }else if storingValues.count >= 12 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
          let lastInput = TextField.text!.removeLast()
             storingValues += "\(lastInput)"
             TextField.text!.append(lastInput)
         countingToAllowDeleteaction = TextField.text!.count
-        } else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count < 5 {
+    } else if storingValues.count >= 11 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false){
+        let lastInput = TextField.text!.removeLast()
+           storingValues += "\(lastInput)"
+           TextField.text!.append(lastInput)
+       countingToAllowDeleteaction = TextField.text!.count
+        
+        
+    }else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count < 5 {
             storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
@@ -257,7 +380,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             TextField.text = String(repeating: "*", count: storingValues.count)
             countingToAllowDeleteaction = TextField.text!.count
           
-        }else if  TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count >= 5 && storingValues.count < 9 {
+        }else if  TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count >= 5 && storingValues.count < 9 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues)){
             storingValues += TextField.text!
             for _ in storingValues {
                 if let index = storingValues.firstIndex(of: "*") {
@@ -268,7 +391,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
             TextField.text = "**** " + String(repeating: "*", count: storingValues.count - 4)
             countingToAllowDeleteaction = TextField.text!.count
-    }else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count >= 9 {
+    }else if  TextField.text!.count > countingToAllowDeleteaction && storingValues.count >= 9 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues)) {
         storingValues += TextField.text!
         for _ in storingValues {
             if let index = storingValues.firstIndex(of: "*") {
@@ -279,32 +402,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         TextField.text = "**** **** " + String(repeating: "*", count: storingValues.count - 8)
         countingToAllowDeleteaction = TextField.text!.count
-    }else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count > 1{
-            storingValues.removeLast()
-//            for _ in storingValues {
-//                if let index = storingValues.firstIndex(of: "*") {
-//            storingValues.remove(at: index)
-//            }
-//            }
-            
-            countingToAllowDeleteaction = TextField.text!.count
-        } else if TextField.text!.count < countingToAllowDeleteaction && TextField.text!.count == 1 {
-            storingValues.removeLast()
-            for _ in storingValues {
-                if let index = storingValues.firstIndex(of: "*") {
-            storingValues.remove(at: index)
+    }else if TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count >= 5  && storingValues.count < 10 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false){
+        storingValues += TextField.text!
+        for _ in storingValues {
+            if let index = storingValues.firstIndex(of: "*") {
+        storingValues.remove(at: index)
+            } else if let index2 = storingValues.firstIndex(of: " "){
+                storingValues.remove(at: index2)
             }
-            }
-            
-            countingToAllowDeleteaction = TextField.text!.count
-        } else if TextField.text!.count == 0  {
-            storingValues = ""
-            countingToAllowDeleteaction = 0
         }
+        TextField.text = "**** " + String(repeating: "*", count: storingValues.count - 4)
+        countingToAllowDeleteaction = TextField.text!.count
+        
+    }  else if TextField.text!.count > countingToAllowDeleteaction &&  storingValues.count == 10 &&  (creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false){
+        storingValues += TextField.text!
+        for _ in storingValues {
+            if let index = storingValues.firstIndex(of: "*") {
+        storingValues.remove(at: index)
+            } else if let index2 = storingValues.firstIndex(of: " "){
+                storingValues.remove(at: index2)
+            }
+        }
+        TextField.text = "**** ****** " + String(repeating: "*", count: storingValues.count - 10)
+        countingToAllowDeleteaction = TextField.text!.count
+        
+    }
+        
+    
         
         
         
-        
+        print(storingValues)
         return storingValues
         
     }
@@ -348,15 +476,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    // handle the credit card textField
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.text?.count == 0{
-            return true
-        }else if textField.text!.count > 0{
-            return true
-        }
-    return false
-     
-}
+//    countingToAllowDeleteaction > textField.text!.count{
+//                        textField.text!.append("\(value!)")
+//                        return true
+//                    }else {
+//                        return false
+//                    }
+//        } else if textField.text!.count == 1 {
+//            let value = textField.text!
+//                    if let number  = Int("\(String(value))") {
+//                        if creditCardTypeWith16numbers(forThisIDNumber: storingValues) && textField.text!.count == 19{
+//                            return false
+//                            } else if amex(UserInput: storingValues) && textField.text!.count == 17{
+//                            return false
+//                               } else {
+//                               return true
+//                              }
+//                    }else if countingToAllowDeleteaction > textField.text!.count{
+//                        return true
+//                    }else {
+//                        textField.text = ""
+//                        return false
+//                    }
+//        }
+//
+    
+      
+         
+            
 
+    
+       
+    
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//
+//
+//    }
+                  
 }

@@ -43,13 +43,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="6bQ-b2-9UK">
                                 <rect key="frame" x="20" y="290" width="368" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-vL-L6I">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-vL-L6I">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="FjI-4T-mRl"/>
                                             <constraint firstAttribute="width" constant="170" id="aMJ-mG-v8a"/>
                                         </constraints>
-                                        <state key="normal" title="PayPal"/>
+                                        <state key="normal" title="PayPal" image="del"/>
                                         <connections>
                                             <action selector="showingPayPal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bLd-OF-R6G"/>
                                         </connections>
@@ -93,7 +93,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-iS-k2z">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-iS-k2z" customClass="drawingADatePicker" customModule="TakeMyMoney" customModuleProvider="target">
                                 <rect key="frame" x="20" y="362" width="368" height="388"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -118,6 +118,10 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="changingvalue:" destination="BYZ-38-t0r" eventType="valueChanged" id="lMe-3B-BiE"/>
+                                            <action selector="showingDatePicker:" destination="BYZ-38-t0r" eventType="editingChanged" id="h3q-Uc-cVe"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-tn-dkT" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="219" y="133" width="97" height="34"/>
@@ -221,23 +225,54 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="5LO-pn-4nL">
+            <size key="intrinsicContentSize" width="78.5" height="20.5"/>
+        </designable>
+        <designable name="9Ps-5A-zNA">
+            <size key="intrinsicContentSize" width="89.5" height="20.5"/>
+        </designable>
+        <designable name="GBl-tN-qIH">
+            <size key="intrinsicContentSize" width="79.5" height="20.5"/>
+        </designable>
         <designable name="Me9-tn-dkT">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="QVh-ZZ-Em3">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="TEX-Uo-NFV">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
+        </designable>
+        <designable name="Uph-Ez-bEK">
+            <size key="intrinsicContentSize" width="267.5" height="20.5"/>
+        </designable>
+        <designable name="ZEV-GR-miI">
+            <size key="intrinsicContentSize" width="73.5" height="20.5"/>
+        </designable>
+        <designable name="grT-dx-rBc">
+            <size key="intrinsicContentSize" width="153" height="20.5"/>
+        </designable>
+        <designable name="jji-zR-IZe">
+            <size key="intrinsicContentSize" width="104.5" height="20.5"/>
+        </designable>
+        <designable name="jkc-fH-HLf">
+            <size key="intrinsicContentSize" width="73.5" height="20.5"/>
         </designable>
         <designable name="lIR-En-LpA">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
+        </designable>
+        <designable name="lIy-ep-LgY">
+            <size key="intrinsicContentSize" width="34" height="20.5"/>
         </designable>
         <designable name="lSa-Yh-aCj">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
+        </designable>
+        <designable name="ne5-oW-okU">
+            <size key="intrinsicContentSize" width="129.5" height="20.5"/>
         </designable>
     </designables>
     <resources>
+        <image name="del" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
