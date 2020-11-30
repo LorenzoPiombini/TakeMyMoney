@@ -33,8 +33,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var countingToAllowDeleteaction = 0
     var didBackSpaceSelect = false
     
-    var datePicker = UIDatePicker()
-    let toolBar = UIToolbar()
+    
+    var datePicker = UIDatePicker() // used this variable to put as a InputView for a specific textField
+    
+    let toolBar = UIToolbar() // use this variiables to add the Done cancel and delete buttons to close the pin pad keyboards or the Date picker
     
     
     
@@ -47,15 +49,45 @@ class ViewController: UIViewController, UITextFieldDelegate {
         scrollViewtohide.alpha = 0
         
         validUntilTextField.delegate = self
-        makingDatePicker()
+        creditCardTextField.inputAccessoryView = addingToolBar(inThisTextField: creditCardTextField)
+        creditCardCVV.inputAccessoryView = addingToolBar(inThisTextField: creditCardCVV)
+        makingDatePickerInputView(inThisTextField: validUntilTextField)
+        textFieldWithInTheScrollView.inputAccessoryView = addingToolBar(inThisTextField: textFieldWithInTheScrollView)
+        
+        //when you hit the textFieldWithInTheScrollView the keyboard cover the card holder name textfield. the follwing allowdme to move the TextField up within the screen so you can see where you are writing in
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         
-    
+        
         // Do any additional setup after loading the view.
         
         
     }
 
+    // object-C function to help move up the ViewController when the card name holder textfield is selected
+    @objc func keyboardWillShow(notification: NSNotification){
+        if textFieldWithInTheScrollView.isFirstResponder {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+        }
+    }
+    
+    // object-C function to help move up the ViewController when the card name holder textfield is selected
+    @objc func keyboardWillHide(notification: NSNotification){
+       
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        
+    }
+    }
+    
+    //paypal btn action
     @IBAction func showingPayPal(_ sender: UIButton){
         
         UIView.animate(withDuration: 0.30, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: { self.scrollViewtohide.alpha = 0.0}, completion: nil)
@@ -63,6 +95,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //Credit card button action
     @IBAction func showingTheScrollView(_ sender: UIButton){
         
         UIView.animate(withDuration: 0.30, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {self.scrollViewtohide.isHidden = false; self.scrollViewtohide.alpha = 1.0}, completion: nil)
@@ -70,42 +103,67 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-
+   // returning a message if it is not a number
+    func messageToTheUserIfNotAnumber(textField: UITextField)-> Bool{
+        var input:Character
+        if textField.text!.count > 1 {
+            input = textField.text!.removeLast()
+        if Int(String(input)) == nil && input != "*" {
+            let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
+            let okay = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+            alertMessage.addAction(okay)
+            self.present(alertMessage, animated: true, completion: nil)
+            return true
+        }else {
+            textField.text?.append(input)
+            return false
+        
+    }
+        } else {
+            if Int(textField.text!) == nil {
+                let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
+                let okay = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                alertMessage.addAction(okay)
+                self.present(alertMessage, animated: true, completion: nil)
+                textField.text = ""
+                return true
+            }else {
+                return false
+            
+        }
+        }
+    }
     
     
    // Checking the values for CVV fields
     
     @IBAction func checkingRightValues(_ sender: Any) {
-        checkingCVVforNumbers()
+        checkingforNumbers(textField: creditCardCVV)
     }
     
     // function to be called in the checkingRightValues IBAction
-    func checkIfThereIsalredyInputsInCVV()-> Bool{
-        if creditCardCVV.text!.count >= 2 {
+    func countingHowManyCharInThe(textField: UITextField)-> Bool{
+        if textField.text!.count >= 2 {
             return true
         }else {
             return false
         }
     }
     
-    func checkingCVVforNumbers(){
+    func checkingforNumbers(textField: UITextField)-> Bool{
         
         /* this handles inputs when you are using the simulator cause you can use tha actual
-        keyboard,  */
+        keyboard, I developed this project using my phone   */
         
-        if creditCardCVV.text != "" {
-        if Int(creditCardCVV.text!) == nil {
-            let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
-            let okay = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-            alertMessage.addAction(okay)
-            self.present(alertMessage, animated: true, completion: nil)
-            if checkIfThereIsalredyInputsInCVV() {
-                creditCardCVV.text?.removeLast()
-            }else{
-                creditCardCVV.text? = ""
+        if textField.text != "" {
+            if messageToTheUserIfNotAnumber(textField: textField){
+              
+                    return false
+            }else {
+                return true
             }
         }
-    }
+        return true
     }
     
    
@@ -118,73 +176,108 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func showingDatePicker(_ sender: Any) {
+ 
+    
+    func addingToolBar(inThisTextField: UITextField) -> UIToolbar{
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = .white
+        toolBar.sizeToFit()
+        //adding buttons
+       
+        let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneHasBeenTapped))
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelHasBeenTapped))
+        let clear = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(self.deletingTheDate))
+        toolBar.setItems([done, cancel, clear], animated: true)
+            toolBar.isUserInteractionEnabled = true
+            toolBar.isHidden = false
+       
         
-        
-     
-//
-//        let alertDate = UIAlertController (title: "Credit Card Valid Until", message: "pick the date on your card", preferredStyle: .alert)
-//
-//        alertDate.addTextField(configurationHandler: {(textField) in
-//            self.makingDatePicker()
-//            textField.inputView = self.datePicker
-//
-//        })
-//        let toolBar = UIToolbar()
-//        toolBar.barStyle = .default
-//            toolBar.isTranslucent = true
-//            toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-//            toolBar.sizeToFit()
-//        self.present(alertDate, animated: true, completion: nil)
-//        alertDate
+       return toolBar
     }
     
-    func makingDatePicker() {
+    func makingDatePickerInputView(inThisTextField: UITextField) {
          let formatter = DateFormatter()
         self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: self.view.frame.size.height - 220, width: self.view.frame.size.width, height: 216))
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         formatter.dateFormat = "MM-yyyy"
-        validUntilTextField.inputView = self.datePicker
-        validUntilTextField.inputAccessoryView = self.toolBar
-        toolBar.barStyle = .default
-            toolBar.isTranslucent = true
-            toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-            toolBar.sizeToFit()
-        
-        let Done = UIBarButtonItem(title: "Done", style: .plain, target: self, action:#selector(self.doneHasBeenTapped))
-        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action:#selector(self.cancelHasBeenTapped))
-        let delete = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(self.deletingTheDate))
-        toolBar.setItems([Done, cancel, delete], animated: true)
-        toolBar.isUserInteractionEnabled = true
-        self.toolBar.isHidden = false
-        
-        
-        
+        inThisTextField.inputView = self.datePicker
+        inThisTextField.inputAccessoryView = self.addingToolBar(inThisTextField: inThisTextField)
     
         
     }
     
-     @objc func doneHasBeenTapped(){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/yyyy"
+    @objc func doneHasBeenTapped(){
         
-        datePicker.isHidden = true
-        self.toolBar.isHidden = true
-        validUntilTextField.text = formatter.string(from: datePicker.date)
-        validUntilTextField.resignFirstResponder()
-        self.makingDatePicker() // called again to allow the User to change the date
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        var index = 0
+        for _ in textFieldsCollection{
+            if textFieldsCollection[index]?.isFirstResponder == true {
+            if textFieldsCollection[index]?.inputView == datePicker {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/yyyy"
+                datePicker.isHidden = true
+                self.toolBar.isHidden = true
+                textFieldsCollection[index]?.text = formatter.string(from: datePicker.date)
+                textFieldsCollection[index]?.resignFirstResponder()
+                self.makingDatePickerInputView(inThisTextField: textFieldsCollection[index]!)
+            } else {
+                self.toolBar.isHidden = true
+                textFieldsCollection[index]?.resignFirstResponder()
+                textFieldsCollection[index]?.inputAccessoryView = addingToolBar(inThisTextField: textFieldsCollection[index]!)
+            }
+               
+        }
+            index += 1
+        }
     }
-   @objc func cancelHasBeenTapped (){
-        datePicker.isHidden = true
+        
+     
+    @objc func cancelHasBeenTapped(){
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        var index = 0
+        for _ in textFieldsCollection{
+            if textFieldsCollection[index]?.isFirstResponder == true {
+            if textFieldsCollection[index]?.inputView == datePicker {
+                 datePicker.isHidden = true
+                   self.toolBar.isHidden = true
+                textFieldsCollection[index]?.resignFirstResponder()
+             self.makingDatePickerInputView(inThisTextField: textFieldsCollection[index]!)
+        }else {
         self.toolBar.isHidden = true
-    validUntilTextField.resignFirstResponder()
-    self.makingDatePicker()
+        textFieldsCollection[index]?.resignFirstResponder()
+            textFieldsCollection[index]?.inputAccessoryView = addingToolBar(inThisTextField: textFieldsCollection[index]!)
+    }
+        
+    }
+            index += 1
+        }
     }
     
     @objc func deletingTheDate(){
-        validUntilTextField.text?.removeAll()
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        var index = 0
+        for _ in textFieldsCollection{
+            if textFieldsCollection[index]?.isFirstResponder == true {
+            if textFieldsCollection[index]?.inputView == datePicker {
+        textFieldsCollection[index]?.text?.removeAll()
+            } else {
+                textFieldsCollection[index]?.text = ""
+            }
+            }
+        index += 1
+        }
+        
+        if textFieldsCollection[0]!.text!.count < countingToAllowDeleteaction {
+            countingToAllowDeleteaction = 0
+            storingValues = ""
+            didBackSpaceSelect = false
+            
+        }
     }
+    
+    
     // group of functions checking the creditCard brend
     
     func amex(UserInput: String) -> Bool {
@@ -225,6 +318,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
        
             var newValue = ""
+        
+        if textFieldShouldBeginEditing(creditCardTextField){
              if creditCardTextField.text == "" {
                  creditCardTextField.leftViewMode = .never
                  newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
@@ -242,8 +337,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
              }
        
 
+        } else {
+            print("false")
         }
-
+    }
 
 
 
@@ -274,10 +371,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             case 5:
                 let index = CreditCardTextField.text!.lastIndex(of: "*")
                 CreditCardTextField.text!.insert(" ", at: index!)
-//            case 10:
-//
-//                CreditCardTextField.text!.append(" ")
-//
+
             default:
                 break
             }
@@ -503,14 +597,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
       
          
-            
+        //this function gives a Bool value: if the credit card number is complete, the user won`t be allowed to enter any inputs
 
-    
+    func stopInputIfcreditCardNumberHasTheMaxlenght(textField: UITextField) -> Bool {
+        if textField.text!.count == 20 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
+            return true
+        }else if textField.text!.count == 18 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues)) == false {
+            return true
+        }else {
+            return false
+        }
+    }
        
     
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//
-//
-//    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if DidDeleteChars(inThisTxtField: textField){
+            return true
+        } else if checkingforNumbers(textField: textField) && stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) {
+            textField.text?.removeLast()
+            return false
+        }else if stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) && checkingforNumbers(textField: textField){
+            return false
+        }else if stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) == false && checkingforNumbers(textField: textField) {
+            return true
+        } else {
+            return false
+        }
+
+    }
                   
 }

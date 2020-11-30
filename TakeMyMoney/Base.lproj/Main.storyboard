@@ -49,7 +49,9 @@
                                             <constraint firstAttribute="height" constant="64" id="FjI-4T-mRl"/>
                                             <constraint firstAttribute="width" constant="170" id="aMJ-mG-v8a"/>
                                         </constraints>
-                                        <state key="normal" title="PayPal" image="del"/>
+                                        <state key="normal" title="PayPal">
+                                            <color key="titleColor" systemColor="linkColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="showingPayPal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bLd-OF-R6G"/>
                                         </connections>
@@ -118,10 +120,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="changingvalue:" destination="BYZ-38-t0r" eventType="valueChanged" id="lMe-3B-BiE"/>
-                                            <action selector="showingDatePicker:" destination="BYZ-38-t0r" eventType="editingChanged" id="h3q-Uc-cVe"/>
-                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-tn-dkT" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="219" y="133" width="97" height="34"/>
@@ -200,7 +198,7 @@
                         <outlet property="creditCardTextField" destination="Khx-Zn-6Cy" id="tMb-eG-7eU"/>
                         <outlet property="passwordInputTextFieldPayPal" destination="QVh-ZZ-Em3" id="3h8-qA-bpm"/>
                         <outlet property="scrollViewtohide" destination="V1K-iS-k2z" id="Uge-6e-Nui"/>
-                        <outlet property="textFieldWithInTheScrollView" destination="Khx-Zn-6Cy" id="DNo-US-Rh6"/>
+                        <outlet property="textFieldWithInTheScrollView" destination="TEX-Uo-NFV" id="7gj-9o-6bF"/>
                         <outlet property="validUntilTextField" destination="lIR-En-LpA" id="4iv-7b-gdo"/>
                     </connections>
                 </viewController>
@@ -235,13 +233,13 @@
             <size key="intrinsicContentSize" width="79.5" height="20.5"/>
         </designable>
         <designable name="Me9-tn-dkT">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="QVh-ZZ-Em3">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="TEX-Uo-NFV">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="Uph-Ez-bEK">
             <size key="intrinsicContentSize" width="267.5" height="20.5"/>
@@ -259,20 +257,22 @@
             <size key="intrinsicContentSize" width="73.5" height="20.5"/>
         </designable>
         <designable name="lIR-En-LpA">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="lIy-ep-LgY">
             <size key="intrinsicContentSize" width="34" height="20.5"/>
         </designable>
         <designable name="lSa-Yh-aCj">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="12" height="26.5"/>
         </designable>
         <designable name="ne5-oW-okU">
             <size key="intrinsicContentSize" width="129.5" height="20.5"/>
         </designable>
     </designables>
     <resources>
-        <image name="del" width="128" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

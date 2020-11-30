@@ -52,8 +52,8 @@
             filePath = "TakeMyMoney/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "secureInputwithAnotherChar(TextField:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,8 +68,8 @@
             filePath = "TakeMyMoney/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
             landmarkName = "secureInputwithAnotherChar(TextField:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,8 +84,8 @@
             filePath = "TakeMyMoney/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,8 +100,8 @@
             filePath = "TakeMyMoney/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField:)"
             landmarkType = "7">
             <Locations>
@@ -152,7 +152,7 @@
                </Location>
                <Location
                   uuid = "39C178EA-FAD3-4BE4-ADE3-12179BE8ACB2 - 3ab045a3f259242d"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "TakeMyMoney.ViewController.formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: __C.UITextField) -&gt; ()"
@@ -178,9 +178,89 @@
             filePath = "TakeMyMoney/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "405"
-            endingLineNumber = "405"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "secureInputwithAnotherChar(TextField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "659E0069-2E39-4829-9932-61ED1642B1EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TakeMyMoney/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "messageToTheUserIfNotAnumber(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B92D2BB4-C71A-47F1-BE65-89CE2056BFC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TakeMyMoney/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "checkingforNumbers(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3247497-34AF-458C-9A07-DC0B36477AF7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TakeMyMoney/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "messageToTheUserIfNotAnumber(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "760485CB-9113-4DBA-AEEB-7632DBF7FA58"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TakeMyMoney/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "603"
+            endingLineNumber = "603"
+            landmarkName = "stopInputIfcreditCardNumberHasTheMaxlenght(textField:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2B5072B-F82F-476F-A052-172ADB9DFC12"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TakeMyMoney/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
+            landmarkName = "textFieldShouldBeginEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
