@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,26 +42,24 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="6bQ-b2-9UK">
                                 <rect key="frame" x="20" y="290" width="368" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-vL-L6I">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-vL-L6I" customClass="formattingBtn" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="FjI-4T-mRl"/>
                                             <constraint firstAttribute="width" constant="170" id="aMJ-mG-v8a"/>
                                         </constraints>
-                                        <state key="normal" title="PayPal">
-                                            <color key="titleColor" systemColor="linkColor"/>
-                                        </state>
+                                        <state key="normal" title="PayPal" image="checkmark.circle" catalog="system"/>
                                         <connections>
                                             <action selector="showingPayPal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bLd-OF-R6G"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vph-PZ-r32">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vph-PZ-r32" customClass="formattingBtn" customModule="TakeMyMoney">
                                         <rect key="frame" x="198" y="0.0" width="170" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="e5l-vR-gak"/>
                                             <constraint firstAttribute="width" constant="170" id="tgz-aF-3c1"/>
                                         </constraints>
-                                        <state key="normal" title="Credit"/>
+                                        <state key="normal" title="Credit" image="checkmark.circle" catalog="system"/>
                                         <connections>
                                             <action selector="showingTheScrollView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eiZ-AJ-CS8"/>
                                         </connections>
@@ -70,14 +67,14 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LO-pn-4nL" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                <rect key="frame" x="39" y="394" width="83" height="21"/>
+                                <rect key="frame" x="39" y="394" width="292" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-fH-HLf" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                <rect key="frame" x="39" y="465" width="83" height="21"/>
+                                <rect key="frame" x="39" y="465" width="292" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -88,19 +85,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="UsernameIsEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="zG9-a2-pYr"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVh-ZZ-Em3" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
                                 <rect key="frame" x="39" y="494" width="310" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="PasswordTxtFieldIsEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="FpR-WV-2gq"/>
+                                </connections>
                             </textField>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-iS-k2z" customClass="drawingADatePicker" customModule="TakeMyMoney" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paypal " translatesAutoresizingMaskIntoConstraints="NO" id="Zfc-fQ-sR8">
+                                <rect key="frame" x="69" y="512.5" width="262" height="133.5"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-iS-k2z">
                                 <rect key="frame" x="20" y="362" width="368" height="388"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Credit Card Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grT-dx-rBc" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="0.0" width="171" height="41"/>
+                                        <rect key="frame" x="8" y="0.0" width="346" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -116,13 +122,16 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lIR-En-LpA" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="17" y="133" width="97" height="34"/>
+                                        <rect key="frame" x="8" y="133" width="152" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="dateTextFieldIsEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="c8q-5e-voq"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-tn-dkT" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="219" y="133" width="97" height="34"/>
+                                        <rect key="frame" x="219" y="133" width="135" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -131,21 +140,21 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valid until" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-GR-miI" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="94" width="82" height="21"/>
+                                        <rect key="frame" x="8" y="94" width="152" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CVV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIy-ep-LgY" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="219" y="94" width="82" height="21"/>
+                                        <rect key="frame" x="219" y="94" width="135" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Card holder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ps-5A-zNA" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="212" width="219" height="21"/>
+                                        <rect key="frame" x="8" y="212" width="346" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -156,6 +165,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="cardHolderNameIsEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="tCY-Zs-uK0"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save card data for future payments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uph-Ez-bEK" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
                                         <rect key="frame" x="8" y="320" width="284" height="31"/>
@@ -167,85 +179,257 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDw-16-OyU">
                                         <rect key="frame" x="307" y="320" width="49" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="onTintColor" red="0.35686274509999999" green="0.46666666670000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92941176469999998" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Qji-2K-VyS"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="xfD-xj-gJs"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dg-zo-Mlh" customClass="proceedToConfirmStyle" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="20" y="796" width="374" height="42"/>
+                                <state key="normal" title="Proceed To Confirm "/>
+                                <connections>
+                                    <action selector="proceedToConfirm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Kg-6b-00q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92941176470588238" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="cma-2W-S6n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="117" id="0cc-Xb-7cR"/>
+                            <constraint firstItem="Zfc-fQ-sR8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="69" id="25h-Xn-z38"/>
                             <constraint firstItem="ne5-oW-okU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="2R5-ue-rCC"/>
                             <constraint firstItem="jji-zR-IZe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="5Ve-5U-iUS"/>
                             <constraint firstItem="GBl-tN-qIH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="88" id="8tx-dZ-72B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ne5-oW-okU" secondAttribute="trailing" constant="264" id="AFe-Jd-Dtz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Zfc-fQ-sR8" secondAttribute="trailing" constant="83" id="AWL-FE-c2V"/>
                             <constraint firstItem="jji-zR-IZe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="116" id="CwG-m5-IGM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3Dg-zo-Mlh" secondAttribute="trailing" constant="20" id="D70-GC-C3Y"/>
+                            <constraint firstItem="3Dg-zo-Mlh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FNb-1p-Cx7"/>
+                            <constraint firstItem="Zfc-fQ-sR8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="468.5" id="P1w-Gz-2m6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cma-2W-S6n" secondAttribute="trailing" constant="166" id="PBv-ao-uft"/>
                             <constraint firstItem="6bQ-b2-9UK" firstAttribute="leading" secondItem="ne5-oW-okU" secondAttribute="leading" id="UoD-b9-wvJ"/>
                             <constraint firstItem="6bQ-b2-9UK" firstAttribute="top" secondItem="ne5-oW-okU" secondAttribute="bottom" constant="36.5" id="XrH-Vo-74U"/>
                             <constraint firstItem="GBl-tN-qIH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="co9-WJ-QpF"/>
                             <constraint firstItem="cma-2W-S6n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ePd-OD-317"/>
+                            <constraint firstItem="3Dg-zo-Mlh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="752" id="idF-IK-HDd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Zfc-fQ-sR8" secondAttribute="bottom" constant="216" id="ikI-QN-d4o"/>
                             <constraint firstItem="ne5-oW-okU" firstAttribute="top" secondItem="cma-2W-S6n" secondAttribute="bottom" constant="26.5" id="laL-qF-Lyo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GBl-tN-qIH" secondAttribute="trailing" constant="314" id="ozR-YX-Xcw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jji-zR-IZe" secondAttribute="trailing" constant="116" id="rV1-1o-6Qg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3Dg-zo-Mlh" secondAttribute="bottom" constant="24" id="zlN-5d-oqj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cardHolderLbl" destination="9Ps-5A-zNA" id="Pg1-Fe-30j"/>
+                        <outlet property="cardHolderTextField" destination="TEX-Uo-NFV" id="uAY-jm-nqJ"/>
+                        <outlet property="creditCardBtn" destination="vph-PZ-r32" id="1RL-YZ-u9U"/>
                         <outlet property="creditCardCVV" destination="Me9-tn-dkT" id="WVu-Cj-PGs"/>
+                        <outlet property="creditCardLbl" destination="grT-dx-rBc" id="bjA-VO-GMI"/>
                         <outlet property="creditCardTextField" destination="Khx-Zn-6Cy" id="tMb-eG-7eU"/>
+                        <outlet property="cvvLbl" destination="lIy-ep-LgY" id="F87-eA-ipJ"/>
                         <outlet property="passwordInputTextFieldPayPal" destination="QVh-ZZ-Em3" id="3h8-qA-bpm"/>
+                        <outlet property="passwordLbl" destination="jkc-fH-HLf" id="DFO-Fd-76E"/>
+                        <outlet property="passwordTxtField" destination="QVh-ZZ-Em3" id="f7w-p6-RCb"/>
+                        <outlet property="paypalBtn" destination="dSr-vL-L6I" id="aHd-7F-kJr"/>
+                        <outlet property="proceedToConfirmBtn" destination="3Dg-zo-Mlh" id="mnR-lF-e6D"/>
                         <outlet property="scrollViewtohide" destination="V1K-iS-k2z" id="Uge-6e-Nui"/>
-                        <outlet property="textFieldWithInTheScrollView" destination="TEX-Uo-NFV" id="7gj-9o-6bF"/>
+                        <outlet property="usernameLbl" destination="5LO-pn-4nL" id="amU-g1-z9m"/>
+                        <outlet property="usernameTxtField" destination="lSa-Yh-aCj" id="ui6-Jm-P1s"/>
+                        <outlet property="validUntilLbl" destination="ZEV-GR-miI" id="8Zv-Dd-vdc"/>
                         <outlet property="validUntilTextField" destination="lIR-En-LpA" id="4iv-7b-gdo"/>
+                        <segue destination="hTK-Sx-l6m" kind="show" identifier="theWayToConfirmation" id="BGu-gI-TY7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-607.24637681159425" y="58.928571428571423"/>
+            <point key="canvasLocation" x="-704.34782608695662" y="58.928571428571423"/>
         </scene>
-        <!--View Controller-->
+        <!--Payment ConfirmationVC-->
         <scene sceneID="b1T-bA-4Fc">
             <objects>
-                <viewController id="hTK-Sx-l6m" sceneMemberID="viewController">
+                <viewController id="hTK-Sx-l6m" customClass="paymentConfirmationVC" customModule="TakeMyMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vtq-iy-s9w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="save50 " translatesAutoresizingMaskIntoConstraints="NO" id="WXY-d2-FBs">
+                                <rect key="frame" x="20" y="99" width="374" height="249"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEu-mX-d8D">
+                                <rect key="frame" x="33" y="24" width="20" height="14"/>
+                                <state key="normal" image="arrow.backward" catalog="system"/>
+                                <connections>
+                                    <action selector="dissimisingTheView:" destination="hTK-Sx-l6m" eventType="touchUpInside" id="IaN-Gm-fWc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ES6-Cz-Yus" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="172" y="25" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment information " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9Z-Am-zSu" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="20" y="419" width="167" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnZ-ub-8uE">
+                                <rect key="frame" x="348" y="432" width="46" height="30"/>
+                                <state key="normal" title="Edit"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxh-AA-cna">
+                                <rect key="frame" x="20" y="491" width="374" height="151"/>
+                                <color key="backgroundColor" red="0.89411764705882346" green="0.89803921568627454" blue="0.92941176470588238" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVK-yd-ot1" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="142" y="506" width="216" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oQ2-7c-3Cd">
+                                <rect key="frame" x="33" y="506" width="93" height="121"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8U-Ei-daz" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="142" y="568" width="216" height="59"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Peu-sE-7R5" customClass="proceedToConfirmStyle" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="20" y="746" width="374" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Pay"/>
+                                <connections>
+                                    <action selector="payTapped:" destination="hTK-Sx-l6m" eventType="touchUpInside" id="Eoz-e4-n8p"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use PromoCode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1l-BQ-z71" customClass="labelTextColor" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="22" y="661" width="179" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PROMO2008" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CS8-Yb-Toi" customClass="textFieldformatter" customModule="TakeMyMoney" customModuleProvider="target">
+                                <rect key="frame" x="20" y="690" width="181" height="34"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kgp-Sz-dDZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="ES6-Cz-Yus" secondAttribute="trailing" constant="171" id="0iv-yo-dss"/>
+                            <constraint firstItem="CS8-Yb-Toi" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="20" id="2Pe-sy-7Da"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="bottom" secondItem="z9Z-Am-zSu" secondAttribute="bottom" constant="346" id="3Gz-Tf-2vK"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="z9Z-Am-zSu" secondAttribute="trailing" constant="227" id="3Hw-GF-gCG"/>
+                            <constraint firstItem="oQ2-7c-3Cd" firstAttribute="centerY" secondItem="uxh-AA-cna" secondAttribute="centerY" id="3hh-vL-BCb"/>
+                            <constraint firstItem="A8U-Ei-daz" firstAttribute="leading" secondItem="yVK-yd-ot1" secondAttribute="leading" id="4qc-CZ-SZt"/>
+                            <constraint firstItem="yVK-yd-ot1" firstAttribute="leading" secondItem="oQ2-7c-3Cd" secondAttribute="trailing" constant="16" id="5jW-fd-Mgq"/>
+                            <constraint firstItem="jnZ-ub-8uE" firstAttribute="leading" secondItem="z9Z-Am-zSu" secondAttribute="trailing" constant="161" id="6wk-r7-ZFZ"/>
+                            <constraint firstItem="Peu-sE-7R5" firstAttribute="top" secondItem="uxh-AA-cna" secondAttribute="bottom" constant="104" id="84z-14-Odh"/>
+                            <constraint firstItem="FEu-mX-d8D" firstAttribute="top" secondItem="kgp-Sz-dDZ" secondAttribute="top" constant="24" id="8MU-GN-LCF"/>
+                            <constraint firstItem="B1l-BQ-z71" firstAttribute="top" secondItem="uxh-AA-cna" secondAttribute="bottom" constant="19" id="ElW-qt-T6e"/>
+                            <constraint firstItem="B1l-BQ-z71" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="22" id="H1d-TU-5ba"/>
+                            <constraint firstItem="z9Z-Am-zSu" firstAttribute="top" secondItem="WXY-d2-FBs" secondAttribute="bottom" constant="71" id="J29-8u-UiV"/>
+                            <constraint firstItem="uxh-AA-cna" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="20" id="Ja5-Bu-hhW"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="B1l-BQ-z71" secondAttribute="trailing" constant="213" id="LMx-Ff-UOn"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="yVK-yd-ot1" secondAttribute="trailing" constant="56" id="LNb-a3-9S9"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="uxh-AA-cna" secondAttribute="trailing" constant="20" id="Lct-en-ii6"/>
+                            <constraint firstItem="FEu-mX-d8D" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="33" id="Lla-Jl-W1x"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="CS8-Yb-Toi" secondAttribute="trailing" constant="213" id="MQM-5P-WIu"/>
+                            <constraint firstItem="CS8-Yb-Toi" firstAttribute="top" secondItem="B1l-BQ-z71" secondAttribute="bottom" constant="8" symbolic="YES" id="OgX-jC-3f4"/>
+                            <constraint firstItem="jnZ-ub-8uE" firstAttribute="top" secondItem="WXY-d2-FBs" secondAttribute="bottom" constant="84" id="PcC-6Y-jrK"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="jnZ-ub-8uE" secondAttribute="trailing" constant="20" id="PiA-Vq-mZs"/>
+                            <constraint firstItem="oQ2-7c-3Cd" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="33" id="PpJ-ER-vRe"/>
+                            <constraint firstItem="yVK-yd-ot1" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="142" id="QQA-kb-T0f"/>
+                            <constraint firstItem="A8U-Ei-daz" firstAttribute="top" secondItem="yVK-yd-ot1" secondAttribute="bottom" constant="3" id="Sxx-ci-DOO"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="FEu-mX-d8D" secondAttribute="trailing" constant="361" id="WTr-ug-ShL"/>
+                            <constraint firstItem="A8U-Ei-daz" firstAttribute="trailing" secondItem="yVK-yd-ot1" secondAttribute="trailing" id="YOq-As-q4l"/>
+                            <constraint firstItem="ES6-Cz-Yus" firstAttribute="leading" secondItem="FEu-mX-d8D" secondAttribute="trailing" constant="119" id="Zbb-IE-j1Z"/>
+                            <constraint firstItem="WXY-d2-FBs" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="20" id="fQL-Ix-cJK"/>
+                            <constraint firstItem="yVK-yd-ot1" firstAttribute="top" secondItem="kgp-Sz-dDZ" secondAttribute="top" constant="506" id="gw1-k9-4eA"/>
+                            <constraint firstItem="uxh-AA-cna" firstAttribute="top" secondItem="z9Z-Am-zSu" secondAttribute="bottom" constant="29" id="hqh-cW-3fT"/>
+                            <constraint firstItem="WXY-d2-FBs" firstAttribute="top" secondItem="kgp-Sz-dDZ" secondAttribute="top" constant="99" id="k4u-iP-VTK"/>
+                            <constraint firstItem="WXY-d2-FBs" firstAttribute="top" secondItem="FEu-mX-d8D" secondAttribute="bottom" constant="61" id="lcY-Zx-B1H"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="bottom" secondItem="yVK-yd-ot1" secondAttribute="bottom" constant="243" id="mME-TT-TVa"/>
+                            <constraint firstItem="oQ2-7c-3Cd" firstAttribute="bottom" secondItem="A8U-Ei-daz" secondAttribute="bottom" id="pi3-oM-IKO"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="bottom" secondItem="uxh-AA-cna" secondAttribute="bottom" constant="166" id="piR-Bo-AO3"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="bottom" secondItem="WXY-d2-FBs" secondAttribute="bottom" constant="460" id="q1F-YQ-Ekk"/>
+                            <constraint firstItem="z9Z-Am-zSu" firstAttribute="leading" secondItem="kgp-Sz-dDZ" secondAttribute="leading" constant="20" id="rlk-ea-S1n"/>
+                            <constraint firstItem="ES6-Cz-Yus" firstAttribute="top" secondItem="kgp-Sz-dDZ" secondAttribute="top" constant="25" id="s3s-tY-hl5"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="bottom" secondItem="oQ2-7c-3Cd" secondAttribute="bottom" constant="181" id="uas-Rk-flI"/>
+                            <constraint firstItem="Peu-sE-7R5" firstAttribute="top" secondItem="B1l-BQ-z71" secondAttribute="bottom" constant="64" id="xed-gN-CVv"/>
+                            <constraint firstItem="oQ2-7c-3Cd" firstAttribute="top" secondItem="z9Z-Am-zSu" secondAttribute="bottom" constant="44" id="yW6-3i-AS7"/>
+                            <constraint firstItem="Peu-sE-7R5" firstAttribute="top" secondItem="CS8-Yb-Toi" secondAttribute="bottom" constant="22" id="yf6-Zd-eGh"/>
+                            <constraint firstItem="kgp-Sz-dDZ" firstAttribute="trailing" secondItem="WXY-d2-FBs" secondAttribute="trailing" constant="20" id="yim-UE-G0k"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="BKv-wd-jRe"/>
+                    <connections>
+                        <outlet property="CardHolderlblL" destination="yVK-yd-ot1" id="rfE-r5-kXQ"/>
+                        <outlet property="creditCardDataNumber" destination="A8U-Ei-daz" id="5gk-KF-x88"/>
+                        <outlet property="imageAtThetop" destination="WXY-d2-FBs" id="PrR-OY-t3q"/>
+                        <outlet property="imageCreditCardBrend" destination="oQ2-7c-3Cd" id="byG-Fd-ifd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDs-Tz-pHs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="831.88405797101461" y="58.928571428571423"/>
+            <point key="canvasLocation" x="182.60869565217394" y="58.928571428571423"/>
         </scene>
     </scenes>
     <designables>
+        <designable name="3Dg-zo-Mlh">
+            <size key="intrinsicContentSize" width="141" height="30"/>
+        </designable>
         <designable name="5LO-pn-4nL">
             <size key="intrinsicContentSize" width="78.5" height="20.5"/>
         </designable>
         <designable name="9Ps-5A-zNA">
             <size key="intrinsicContentSize" width="89.5" height="20.5"/>
         </designable>
+        <designable name="A8U-Ei-daz">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="B1l-BQ-z71">
+            <size key="intrinsicContentSize" width="125" height="20.5"/>
+        </designable>
+        <designable name="CS8-Yb-Toi">
+            <size key="intrinsicContentSize" width="114" height="34"/>
+        </designable>
+        <designable name="ES6-Cz-Yus">
+            <size key="intrinsicContentSize" width="71" height="20.5"/>
+        </designable>
         <designable name="GBl-tN-qIH">
             <size key="intrinsicContentSize" width="79.5" height="20.5"/>
         </designable>
         <designable name="Me9-tn-dkT">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
+        </designable>
+        <designable name="Peu-sE-7R5">
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
         <designable name="QVh-ZZ-Em3">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="TEX-Uo-NFV">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="Uph-Ez-bEK">
             <size key="intrinsicContentSize" width="267.5" height="20.5"/>
         </designable>
         <designable name="ZEV-GR-miI">
             <size key="intrinsicContentSize" width="73.5" height="20.5"/>
+        </designable>
+        <designable name="dSr-vL-L6I">
+            <size key="intrinsicContentSize" width="74" height="22"/>
         </designable>
         <designable name="grT-dx-rBc">
             <size key="intrinsicContentSize" width="153" height="20.5"/>
@@ -257,24 +441,31 @@
             <size key="intrinsicContentSize" width="73.5" height="20.5"/>
         </designable>
         <designable name="lIR-En-LpA">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="lIy-ep-LgY">
             <size key="intrinsicContentSize" width="34" height="20.5"/>
         </designable>
         <designable name="lSa-Yh-aCj">
-            <size key="intrinsicContentSize" width="12" height="26.5"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="ne5-oW-okU">
             <size key="intrinsicContentSize" width="129.5" height="20.5"/>
         </designable>
+        <designable name="vph-PZ-r32">
+            <size key="intrinsicContentSize" width="69" height="22"/>
+        </designable>
+        <designable name="yVK-yd-ot1">
+            <size key="intrinsicContentSize" width="41.5" height="20.5"/>
+        </designable>
+        <designable name="z9Z-Am-zSu">
+            <size key="intrinsicContentSize" width="161.5" height="20.5"/>
+        </designable>
     </designables>
     <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="paypal " width="133.33332824707031" height="133.33332824707031"/>
+        <image name="save50 " width="425" height="564.33331298828125"/>
     </resources>
 </document>

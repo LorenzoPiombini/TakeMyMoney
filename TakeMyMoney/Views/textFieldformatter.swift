@@ -24,7 +24,7 @@ class textFieldformatter: UITextField {
         clipsToBounds = true
         borderStyle = .line
         backgroundColor = .white
-        
+        layer.borderWidth = 1.0
         
     }
     

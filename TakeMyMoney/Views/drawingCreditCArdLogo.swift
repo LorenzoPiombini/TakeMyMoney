@@ -10,8 +10,6 @@ import UIKit
 class drawingCreditCArdLogo: UITextField {
 
     
-    var toolBar = UIToolbar()
-    // overriding the leftViewRect of the UITextView in order to fit the UIImage containing the credit card logo
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         let height = self.frame.size.height
@@ -34,7 +32,8 @@ class drawingCreditCArdLogo: UITextField {
         clipsToBounds = true
         borderStyle = .line
         backgroundColor = .white
-       
+        layer.borderWidth = 1.0
+        
         
         
     }

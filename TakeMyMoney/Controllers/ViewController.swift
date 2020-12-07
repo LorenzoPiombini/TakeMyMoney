@@ -7,32 +7,32 @@
 
 import UIKit
 
-protocol userInteraction {
-   func didUsereSelectTheTextField(textField: UITextField)
-}
+
 
 @IBDesignable
 class ViewController: UIViewController, UITextFieldDelegate {
     
     
-
     override  func prepareForInterfaceBuilder() {
         self
     }
-    
+    @IBOutlet weak var creditCardLbl: UILabel!
+    @IBOutlet weak var cvvLbl: UILabel!
+    @IBOutlet weak var validUntilLbl: UILabel!
+    @IBOutlet weak var cardHolderLbl: UILabel!
+    @IBOutlet weak var usernameLbl: UILabel!
+    @IBOutlet weak var passwordLbl: UILabel!
     @IBOutlet weak var scrollViewtohide: UIScrollView!
-    @IBOutlet weak var textFieldWithInTheScrollView: UITextField!
+    @IBOutlet weak var cardHolderTextField: UITextField!
     @IBOutlet weak var passwordInputTextFieldPayPal: UITextField!
     @IBOutlet weak var creditCardCVV: UITextField!
     @IBOutlet weak var creditCardTextField:UITextField!
     @IBOutlet weak var validUntilTextField: UITextField!
-    
-    
-    var userCreditCardInput:String = ""
-    var storingValues = ""
-    var countingToAllowDeleteaction = 0
-    var didBackSpaceSelect = false
-    
+    @IBOutlet weak var proceedToConfirmBtn: UIButton!
+    @IBOutlet weak var usernameTxtField: UITextField!
+    @IBOutlet weak var passwordTxtField:UITextField!
+    @IBOutlet weak var  paypalBtn: UIButton!
+    @IBOutlet weak var creditCardBtn: UIButton!
     
     var datePicker = UIDatePicker() // used this variable to put as a InputView for a specific textField
     
@@ -44,15 +44,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         passwordInputTextFieldPayPal.isSecureTextEntry = true
         creditCardCVV.isSecureTextEntry = true
-        
+       
+        creditCardBtn.alpha = 0.4
         //to hide the scrollviews with the credit Card fields :
         scrollViewtohide.alpha = 0
         
-        validUntilTextField.delegate = self
+        passwordTxtField.inputAccessoryView = addingToolBar(inThisTextField: passwordTxtField)
+        usernameTxtField.inputAccessoryView = addingToolBar(inThisTextField: usernameTxtField)
         creditCardTextField.inputAccessoryView = addingToolBar(inThisTextField: creditCardTextField)
         creditCardCVV.inputAccessoryView = addingToolBar(inThisTextField: creditCardCVV)
         makingDatePickerInputView(inThisTextField: validUntilTextField)
-        textFieldWithInTheScrollView.inputAccessoryView = addingToolBar(inThisTextField: textFieldWithInTheScrollView)
+        cardHolderTextField.inputAccessoryView = addingToolBar(inThisTextField: cardHolderTextField)
         
         //when you hit the textFieldWithInTheScrollView the keyboard cover the card holder name textfield. the follwing allowdme to move the TextField up within the screen so you can see where you are writing in
         
@@ -68,7 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     // object-C function to help move up the ViewController when the card name holder textfield is selected
     @objc func keyboardWillShow(notification: NSNotification){
-        if textFieldWithInTheScrollView.isFirstResponder {
+        if cardHolderTextField.isFirstResponder || passwordTxtField.isFirstResponder {
         guard let userInfo = notification.userInfo else {return}
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         let keyboardFrame = keyboardSize.cgRectValue
@@ -80,15 +82,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // object-C function to help move up the ViewController when the card name holder textfield is selected
     @objc func keyboardWillHide(notification: NSNotification){
-       
+        
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         
+        }
+      
     }
-    }
+    
     
     //paypal btn action
     @IBAction func showingPayPal(_ sender: UIButton){
+        creditCardBtn.alpha = 0.4
+        paypalBtn.alpha = 1
         
         UIView.animate(withDuration: 0.30, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: { self.scrollViewtohide.alpha = 0.0}, completion: nil)
        
@@ -97,37 +103,77 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //Credit card button action
     @IBAction func showingTheScrollView(_ sender: UIButton){
-        
+        paypalBtn.alpha = 0.4
+        creditCardBtn.alpha = 1
         UIView.animate(withDuration: 0.30, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {self.scrollViewtohide.isHidden = false; self.scrollViewtohide.alpha = 1.0}, completion: nil)
         
     }
 
+    @IBAction func dateTextFieldIsEditing(_ sender:Any){
+        validUntilLbl.text = "Valid until"
+        validUntilLbl.textColor = .darkGray
+        resettingTextFieldToOriginaFormat(textField: validUntilTextField)
+    }
     
-   // returning a message if it is not a number
+    @IBAction func UsernameIsEditing(_ sender: Any){
+        usernameLbl.text = "Username"
+        usernameLbl.textColor = .darkGray
+        resettingTextFieldToOriginaFormat(textField: usernameTxtField)
+        
+    }
+    
+    @IBAction func PasswordTxtFieldIsEditing(_ seder: Any){
+        passwordLbl.text = "Password"
+        passwordLbl.textColor = .darkGray
+        resettingTextFieldToOriginaFormat(textField: passwordTxtField)
+    }
+    
+    
+    
+    
+   // returning a message if it is not a number and check if it is a number at the same time
     func messageToTheUserIfNotAnumber(textField: UITextField)-> Bool{
         var input:Character
         if textField.text!.count > 1 {
             input = textField.text!.removeLast()
-        if Int(String(input)) == nil && input != "*" {
-            let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
+        if Int(String(input)) == nil && input != "*" && input != " " {
+            if textField != cardHolderTextField{
+            let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "", preferredStyle: .alert)
             let okay = UIAlertAction.init(title: "OK", style: .default, handler: nil)
             alertMessage.addAction(okay)
             self.present(alertMessage, animated: true, completion: nil)
             return true
+            }else{
+            
+                
+                textField.text?.append(input)
+                return true
+            }
         }else {
+            if input == " " && textField == cardHolderTextField {
+                textField.text?.append(input)
+                return true
+            }
             textField.text?.append(input)
             return false
         
     }
         } else {
-            if Int(textField.text!) == nil {
-                let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "only numbers please", preferredStyle: .alert)
+            if Int(textField.text!) == nil && textField.text! != "*" && textField.text! != " " {
+                if textField != cardHolderTextField {
+                let alertMessage = UIAlertController.init(title: "Your Entry is invalid", message: "", preferredStyle: .alert)
                 let okay = UIAlertAction.init(title: "OK", style: .default, handler: nil)
                 alertMessage.addAction(okay)
                 self.present(alertMessage, animated: true, completion: nil)
                 textField.text = ""
                 return true
+                } else {
+                    return true
+                }
             }else {
+                if textField.text == " " && textField == cardHolderTextField {
+                    return true
+                }
                 return false
             
         }
@@ -138,53 +184,97 @@ class ViewController: UIViewController, UITextFieldDelegate {
    // Checking the values for CVV fields
     
     @IBAction func checkingRightValues(_ sender: Any) {
+        /*      this three line reset the format of the label and textField when the
+                user is editing to correct the error (if there`s one ) */
+                
+                cvvLbl.text = "CVV"
+                cvvLbl.textColor = .darkGray
+               resettingTextFieldToOriginaFormat(textField:creditCardCVV)
+          //#######################################################################
+        if creditCardCVV.text!.count <= 3 {
         checkingforNumbers(textField: creditCardCVV)
+        }else {
+            creditCardCVV.text!.removeLast()
+        }
+        
     }
     
-    // function to be called in the checkingRightValues IBAction
-    func countingHowManyCharInThe(textField: UITextField)-> Bool{
-        if textField.text!.count >= 2 {
-            return true
-        }else {
-            return false
-        }
-    }
+    
+    
     
     func checkingforNumbers(textField: UITextField)-> Bool{
         
         /* this handles inputs when you are using the simulator cause you can use tha actual
-        keyboard, I developed this project using my phone   */
-        
+        keyboard, I developed this project using my phone and on the phone the right keyboard comes up  */
+        if DidDeleteChars(inThisTxtField: textField) == false {
         if textField.text != "" {
             if messageToTheUserIfNotAnumber(textField: textField){
               
                     return false
             }else {
+            
                 return true
             }
         }
         return true
+        } else if textField == cardHolderTextField && countingToAllowDeleteaction >= 18 {
+            return false
+        }else {
+            return true
+        }
     }
-    
-   
-    
-    
-  
-    @IBAction func changingvalue(_ sender: UITextField) {
-        sender.becomeFirstResponder()
-        print("yes")
-    }
-    
     
  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let paymentConfirm = segue.destination as? paymentConfirmationVC{
+            if scrollViewtohide.alpha == 1{
+            paymentConfirm.creditCardNumber = creditCardTextField.text!
+            paymentConfirm.cardHolder = cardHolderTextField.text!
+            } else {
+                paymentConfirm.username = usernameTxtField.text!
+                paymentConfirm.cardHolder = usernameTxtField.text!
+            }
+    }
+    }
+    
+    @IBAction func proceedToConfirm (_ sender: Any) {
+        if scrollViewtohide.alpha == 1 {
+            isValidUntilCOkay(textField: validUntilTextField, writeTheMessageIn: validUntilLbl)
+            isCvvDataOkay(textField: creditCardCVV, writeTheMessageIn: cvvLbl)
+            isCreditCardNumberDataOkay(textField: creditCardTextField, writeTheMessageIn: creditCardLbl)
+            isCardHolderDataOkay(textField: cardHolderTextField, writeTheMessageIn: cardHolderLbl)
+        if isValidUntilCOkay(textField: validUntilTextField, writeTheMessageIn: validUntilLbl) && isCvvDataOkay(textField: creditCardCVV, writeTheMessageIn: cvvLbl) && isCreditCardNumberDataOkay(textField: creditCardTextField, writeTheMessageIn: creditCardLbl) && isCardHolderDataOkay(textField: cardHolderTextField, writeTheMessageIn: cardHolderLbl) {
+            performSegue(withIdentifier: "theWayToConfirmation", sender: self)
+            
+        }
+        } else {
+            
+         isTxtFieldOkay(textField: usernameTxtField, writeTheMessageIn: usernameLbl)
+            isTxtFieldOkay(textField: passwordTxtField, writeTheMessageIn: passwordLbl)
+            if isTxtFieldOkay(textField: usernameTxtField, writeTheMessageIn: usernameLbl) && isTxtFieldOkay(textField: passwordTxtField, writeTheMessageIn: passwordLbl){
+            performSegue(withIdentifier: "theWayToConfirmation", sender: self)
+            }
+        }
+  
+    }
+    
+    
+ // the following functions add and define the tool bar in the textFields impuViews.
+// I came up with this solution cause in those field where just number are allowed on iphone just a numeric pinpad will come up, with out any return key, then i added this tool bar woth three btn.
     
     func addingToolBar(inThisTextField: UITextField) -> UIToolbar{
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
-        toolBar.tintColor = .white
+        //understanding if the device run on dark or light mode and
+        // changing the color of the btns accordingly:
+        if traitCollection.userInterfaceStyle == .light {
+        toolBar.tintColor = .darkGray
+        } else {
+            toolBar.tintColor = .white
+        }
         toolBar.sizeToFit()
         //adding buttons
-       
+        
         let done = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneHasBeenTapped))
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelHasBeenTapped))
         let clear = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(self.deletingTheDate))
@@ -196,9 +286,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
        return toolBar
     }
     
+    /* I used the scrollview option to practise a new thing and I realized that i did not have so much space that way to place a datePicker, then I uunderstood i could used a datePiker as a inputView for the related textView, the function is the following: */
+    
     func makingDatePickerInputView(inThisTextField: UITextField) {
          let formatter = DateFormatter()
         self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: self.view.frame.size.height - 220, width: self.view.frame.size.width, height: 216))
+        let minimumdate = Date() + 86400
+        datePicker.minimumDate = minimumdate // minimum date set for tomorrow
+        datePicker.maximumDate = minimumdate + 126230400 // max set five years from tomorrow
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         formatter.dateFormat = "MM-yyyy"
@@ -208,9 +303,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
+    /* object-c functions building the TollBar button for my inputviews :
+    they will be three Done btn Cancel btn and clear btn
+     the functionality of the btns depends on the TextField, the textFieldsCollection is an array of the textfield of the mainViewController, i used this with a for loop to select the right option for the right TextField*/
+    
     @objc func doneHasBeenTapped(){
         
-        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, cardHolderTextField, passwordTxtField, usernameTxtField]
         var index = 0
         for _ in textFieldsCollection{
             if textFieldsCollection[index]?.isFirstResponder == true {
@@ -235,7 +335,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
      
     @objc func cancelHasBeenTapped(){
-        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, cardHolderTextField, passwordTxtField, usernameTxtField]
         var index = 0
         for _ in textFieldsCollection{
             if textFieldsCollection[index]?.isFirstResponder == true {
@@ -256,7 +356,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func deletingTheDate(){
-        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, textFieldWithInTheScrollView]
+        let textFieldsCollection = [creditCardTextField, validUntilTextField, creditCardCVV, cardHolderTextField, passwordTxtField, usernameTxtField]
         var index = 0
         for _ in textFieldsCollection{
             if textFieldsCollection[index]?.isFirstResponder == true {
@@ -277,56 +377,61 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+//    i really did not understand how to use the following methods
     
-    // group of functions checking the creditCard brend
     
-    func amex(UserInput: String) -> Bool {
-        if UserInput.hasPrefix("34") || UserInput.hasPrefix("37"){
-            return true
-        } else {
-            return false
+//   @IBAction func didReturnTappedpasswordTxtField(_ sender: Any){
+//        if textFieldShouldReturn(passwordTxtField){
+//            passwordTxtField.resignFirstResponder()
+//        }
+ // }
+//@IBAction func didReturnTappedusernameTxtField(_ sender: Any){
+//        if textFieldShouldReturn(usernameTxtField){
+//            usernameTxtField.resignFirstResponder()
+//       }
+//    }
+    
+    @IBAction func cardHolderNameIsEditing(_ sender: Any){
+        /*      this three line reset the format of the label and textField when the
+                user is editing to correct the error (if there`s one ) */
+                
+        cardHolderLbl.text = "Card Holder"
+         cardHolderLbl.textColor = .darkGray
+        resettingTextFieldToOriginaFormat(textField:cardHolderTextField)
+        //########################################################
+         if  textFieldShouldBeginEditing(cardHolderTextField) {
+            countingToAllowDeleteactionInCardHolderTextField = cardHolderTextField.text!.count
+        }else{
+            
+            switch cardHolderTextField.text!.count  {
+            case 1, 0:
+                cardHolderTextField.text = ""
+                countingToAllowDeleteactionInCardHolderTextField = 0
+            default:
+                cardHolderTextField.text!.removeLast()
+                 countingToAllowDeleteactionInCardHolderTextField -= 1
+            }
         }
     }
-    func discover (UserInput: String) -> Bool {
-        if UserInput.hasPrefix("6011") || UserInput.hasPrefix("68"){
-            return true
-        } else
-        {
-            return false
-        }
-        
-    }
-    func visa(UserInput: String) -> Bool {
-        if UserInput.hasPrefix("4") {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func masterCard(UserInput: String)->Bool {
-        if UserInput.hasPrefix("51") || UserInput.hasPrefix("52") || UserInput.hasPrefix("53") || UserInput.hasPrefix("54") ||
-            UserInput.hasPrefix("55") {
-            return true
-                   
-        } else {
-            return false
-        }
-    }
-    
     
     @IBAction func findingTheCreditCardBrend(_ sender: Any) {
-       
-            var newValue = ""
+/*      this three line reset the format of the label and textField when the
+        user is editing to correct the error (if there`s one ) */
+        
+        creditCardLbl.text = "Credit Card Number"
+        creditCardLbl.textColor = .darkGray
+       resettingTextFieldToOriginaFormat(textField:creditCardTextField)
+  //#######################################################################
+        var newValue = ""
         
         if textFieldShouldBeginEditing(creditCardTextField){
              if creditCardTextField.text == "" {
                  creditCardTextField.leftViewMode = .never
                  newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
-                         whichcreditcard(forUserInput: newValue)
+                whichcreditcard(forUserInput: newValue, textField: creditCardTextField)
              } else {
                  newValue = secureInputwithAnotherChar(TextField: creditCardTextField)
-                         whichcreditcard(forUserInput: newValue)
+                whichcreditcard(forUserInput: newValue, textField: creditCardTextField)
 
                              }
              if !didBackSpaceSelect {
@@ -342,53 +447,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-
-
-    
-
-                    
+       func DidDeleteChars(inThisTxtField: UITextField) -> Bool {
         
-              
-    func formattingTheCreditCardSecuredNumberWithSpace(CreditCardTextField: UITextField){
-        if creditCardTypeWith16numbers(forThisIDNumber: storingValues){
-            switch storingValues.count {
-            case 5:
-                let index = CreditCardTextField.text!.lastIndex(of: "*")
-                CreditCardTextField.text!.insert(" ", at: index!)
-            case 9:
-                let index = CreditCardTextField.text!.lastIndex(of: "*")
-                CreditCardTextField.text!.insert(" ", at: index!)
-            case 13:
-                let lastInput = CreditCardTextField.text!.removeLast()
-                CreditCardTextField.text!.append(lastInput)
-                let index = CreditCardTextField.text!.lastIndex(of: lastInput)
-                CreditCardTextField.text!.insert(" ", at: index!)
-            default:
-                break
-            }
-        } else {
-            switch storingValues.count {
-            case 5:
-                let index = CreditCardTextField.text!.lastIndex(of: "*")
-                CreditCardTextField.text!.insert(" ", at: index!)
-
-            default:
-                break
-            }
-        }
-        
-        
-    }
-  
-    func DidDeleteChars(inThisTxtField: UITextField) -> Bool {
-        if countingToAllowDeleteaction > inThisTxtField.text!.count {
+        if inThisTxtField != cardHolderTextField{
+        if countingToAllowDeleteaction >= inThisTxtField.text!.count {
             return true
         }else {
             return false
         }
+        
+        } else if inThisTxtField == cardHolderTextField {
+            if countingToAllowDeleteactionInCardHolderTextField > inThisTxtField.text!.count{
+                
+                return true
+            }else {
+                return false
+            }
+        }
+        return true
     }
-    
+
     // secureInputwithAnotherChar V 1.0 11/24/20 it works with Mastercard Discover and Visa, Amex format has not been implemented yet
+    // secureInputwithAnotherChar V 1.1 12/6/20 it works with Mastercard Discover Visa and Amex
     /**
      The secureInputwithAnotherChar is the core function to secure the input besides
      the last four digits of the credit card. it works with other functions in orther to secure and guarnted the outcome
@@ -402,11 +482,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                             
                                
      */
-    
-    func secureInputwithAnotherChar(TextField: UITextField)-> String{
-    
+
+    public func secureInputwithAnotherChar(TextField: UITextField)-> String{
+
         
-        if DidDeleteChars(inThisTxtField: creditCardTextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
+        if DidDeleteChars(inThisTxtField: TextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
             if storingValues.count > 1 {
             storingValues.removeLast()
                 countingToAllowDeleteaction = TextField.text!.count
@@ -428,7 +508,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 storingValues = ""
                 countingToAllowDeleteaction = 0
             }
-        } else if DidDeleteChars(inThisTxtField: creditCardTextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false{
+        } else if DidDeleteChars(inThisTxtField: TextField) && creditCardTypeWith16numbers(forThisIDNumber: storingValues) == false{
             if storingValues.count > 1 {
                 
             storingValues.removeLast()
@@ -522,7 +602,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
         
-    
+
         
         
         
@@ -531,89 +611,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func creditCardTypeWith16numbers(forThisIDNumber: String)->Bool {
-        if masterCard(UserInput: forThisIDNumber ) || visa(UserInput: forThisIDNumber) || discover(UserInput: forThisIDNumber){
-            return true
-        }else {
-            return false
-        }
-    }
-    //putting the Credit Card brand image in place
-    func whichcreditcard(forUserInput:String) {
-        if masterCard(UserInput: forUserInput) {
-            creditCardTextField.leftViewMode = .always
-            let imageView = UIImageView()
-            let Image = UIImage(named: "mc_symbol_opt_45_3x.png")
-            imageView.image = Image
-            creditCardTextField.leftView = imageView
-            
-        }else if visa(UserInput: forUserInput){
-            creditCardTextField.leftViewMode = .always
-            let imageView = UIImageView()
-            let image = UIImage(named: "visa.png")
-            imageView.image = image
-            creditCardTextField.leftView = imageView
-        }else if discover(UserInput: forUserInput){
-            creditCardTextField.leftViewMode = .always
-            let imageView = UIImageView()
-            let image = UIImage(named: "discover.png")
-            imageView.image = image
-            creditCardTextField.leftView = imageView
-        }else if amex(UserInput: forUserInput) {
-            creditCardTextField.leftViewMode = .always
-            let imageView = UIImageView()
-            let image = UIImage(named: "amex.png")
-            imageView.image = image
-            creditCardTextField.leftView = imageView
-        }
-        
-    }
-    
-//    countingToAllowDeleteaction > textField.text!.count{
-//                        textField.text!.append("\(value!)")
-//                        return true
-//                    }else {
-//                        return false
-//                    }
-//        } else if textField.text!.count == 1 {
-//            let value = textField.text!
-//                    if let number  = Int("\(String(value))") {
-//                        if creditCardTypeWith16numbers(forThisIDNumber: storingValues) && textField.text!.count == 19{
-//                            return false
-//                            } else if amex(UserInput: storingValues) && textField.text!.count == 17{
-//                            return false
-//                               } else {
-//                               return true
-//                              }
-//                    }else if countingToAllowDeleteaction > textField.text!.count{
-//                        return true
-//                    }else {
-//                        textField.text = ""
-//                        return false
-//                    }
-//        }
-//
-    
-      
-         
-        //this function gives a Bool value: if the credit card number is complete, the user won`t be allowed to enter any inputs
-
-    func stopInputIfcreditCardNumberHasTheMaxlenght(textField: UITextField) -> Bool {
-        if textField.text!.count == 20 && creditCardTypeWith16numbers(forThisIDNumber: storingValues) {
-            return true
-        }else if textField.text!.count == 18 && (creditCardTypeWith16numbers(forThisIDNumber: storingValues)) == false {
-            return true
-        }else {
-            return false
-        }
-    }
-       
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        return true
+//    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if DidDeleteChars(inThisTxtField: textField){
+        if checkingforNumbers(textField: textField) && textField == cardHolderTextField {
+            return false
+        }else if checkingforNumbers(textField: textField) == false && textField == cardHolderTextField {
             return true
-        } else if checkingforNumbers(textField: textField) && stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) {
+        }else if checkingforNumbers(textField: textField) && stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) {
             textField.text?.removeLast()
             return false
         }else if stopInputIfcreditCardNumberHasTheMaxlenght(textField: textField) && checkingforNumbers(textField: textField){

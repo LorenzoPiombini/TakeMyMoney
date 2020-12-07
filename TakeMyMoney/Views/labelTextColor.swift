@@ -19,5 +19,6 @@ class labelTextColor: UILabel {
     
     func darkGrayColorForThexLbl(){
         textColor = .darkGray
+      
     }
 }
